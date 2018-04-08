@@ -92,8 +92,8 @@ distribution can be specified.
 This vignette is part of package \pkg{cvar}, version~\Sexpr{pd$Version}. %$
 }
 
-\Keywords{bibliographic references, Rd, bibtex, \proglang{R}}
-\Plainkeywords{bibliographic references, cite, Rd, R}
+\Keywords{expected shortfall, ES, CVaR, VaR, value at risk}
+\Plainkeywords{expected shortfall, ES, CVaR, VaR, value at risk}
 
 
 \begin{document}
@@ -371,6 +371,7 @@ abs((res1b - res2)/res2)
 abs((res2b - res2)/res2)
 @
 
+\newpage{}
 \bibliography{REFERENCES}
 
 \end{document}

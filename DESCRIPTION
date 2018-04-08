@@ -9,7 +9,7 @@ Description: Compute expected shortfall (ES) and Value at Risk (VaR)
     from a quantile function, distribution function, random number
     generator or probability density function.  ES is also known as
     Conditional Value at Risk (CVaR). Virtually any continuous
-    distribution can be specified.  The functions are vectorised over
+    distribution can be specified.  The functions are vectorized over
     the arguments.
 URL: https://github.com/GeoBosh/cvar
 BugReports: https://github.com/GeoBosh/cvar/issues
