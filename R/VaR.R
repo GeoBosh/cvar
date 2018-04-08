@@ -309,19 +309,19 @@ ES <- function(dist, x = 0.05, dist.type = "qf", qf, ...,
 
         iargs[names(control)] <- control
 
-        res <- do.call("integrate", iargs)
+        res <- do.call("integrate", iargs)$value
     }else{
         ## TODO: this is lazy
         if(dist.type == "pdf"){
-            res <- mapply(ES, MoreArgs = list(dist = dist),
-                          x = x, dist.type = dist.type, qf = qf, ..., control = control)
+            res <- mapply(ES, MoreArgs = list(dist = dist, dist.type = dist.type, control = control),
+                          x = x, qf = qf, ...)
         }else{
-            res <- mapply(ES, MoreArgs = list(dist = dist),
-                          x = x, dist.type = dist.type, ..., control = control)
+            res <- mapply(ES, MoreArgs = list(dist = dist, dist.type = dist.type, control = control),
+                          x = x, ...)
         }
     }
 
-    -intercept + slope * res$value
+    -intercept + slope * res
 }
 
 CVaR <- AVaR <- ES
