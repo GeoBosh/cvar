@@ -1,16 +1,18 @@
 Package: cvar
 Type: Package
-Title: Compute Conditional Value-at-Risk and Value-at-Risk
+Title: Compute Expected Shortfall and Value at Risk for Continuous Distributions
 Version: 0.1-0
-Date: 2018-04-07
+Date: 2018-04-08
 Author: Georgi N. Boshnakov
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
-Description: Compute Conditional Value-at-Risk (CVaR) and
-     Value-at-Risk (VaR) from a quantile function, distribution
-     function, random number generator or probability dnsity function.
-     CVaR is also known as Expected shortfall. Virtually any
-     continuous distribution can be specified.  The functions are
-     vectorised over the arguments.
+Description: Compute expected shortfall (ES) and Value at Risk (VaR)
+    from a quantile function, distribution function, random number
+    generator or probability density function.  ES is also known as
+    Conditional Value at Risk (CVaR). Virtually any continuous
+    distribution can be specified.  The functions are vectorised over
+    the arguments.
+URL: https://github.com/GeoBosh/cvar
+BugReports: https://github.com/GeoBosh/cvar/issues
 Imports: stats, utils, gbutils, Rdpack (>= 0.7)
 RdMacros: Rdpack
 License: GPL (>=2)

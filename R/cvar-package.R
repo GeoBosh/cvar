@@ -1,5 +1,12 @@
 #' @author Georgi N. Boshnakov
 #'
+#' @importFrom gbutils cdf2quantile
+#' @importFrom Rdpack reprompt
+#'
+#' @docType package
+#' @name cvar-package
+#' @aliases cvar
+#'
 #' @title Compute Conditional Value-at-Risk and Value-at-Risk
 #'
 #' @description Compute expected shortfall (ES) and Value at Risk
@@ -68,11 +75,4 @@
 #' @examples
 #' ## see the examples in \code{\link{ES}} and \code{\link{VaR}}
 #'
-#' @import stats utils gbutils
-#' @importFrom gbutils cdf2quantile
-#' @importFrom Rdpack reprompt
-#'
-#' @docType package
-#' @name cvar-package
-#' @aliases cvar
 NULL

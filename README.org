@@ -1,0 +1,65 @@
+#+PROPERTY: header-args:R   :cache yes :session readme-r :results value :exports both
+#+OPTIONS: toc:nil
+
+Compute expected shortfall (ES) and Value at Risk (VaR) from a
+quantile function, distribution function, random number generator or
+probability density function.  ES is also known as Conditional Value
+at Risk (CVaR). Virtually any continuous distribution can be
+specified.  The functions are vectorised over the arguments.
+
+
+* Installing cvar
+
+The [[https://cran.r-project.org/package=cvar][latest stable version]] is on CRAN. 
+#+BEGIN_EXAMPLE
+install_packages("cvar")
+#+END_EXAMPLE
+
+
+You can install the [[https://github.com/GeoBosh/cvar][development version]] of =cvar= from Github:
+#+BEGIN_EXAMPLE
+library(devtools)
+install_github("GeoBosh/cvar")
+#+END_EXAMPLE
+
+* Overview
+
+Package =cvar= is a small package with, essentially two
+functions --- =ES= for computing the expected shortfall
+and =VaR= for Value at Risk.  The user specifies the
+distribution by supplying one of the functions that define a
+continuous distribution---currently this can be a quantile
+function (qf), cumulative distribution function (cdf) or
+probability density function (pdf). Virtually any continuous
+distribution can be specified.
+
+The functions are vectorised over the parameters of the
+distributions, making bulk computations more convenient, for
+example for forecasting or model evaluation.
+
+The name of this package, "cvar", comes from /Conditional Value at
+Risk/ (CVaR), which is an alternative term for expected shortfall.
+
+We chose to use the standard names =ES= and =VaR=,
+despite the possibility for name clashes with same named
+functions in other packages, rather than invent possibly
+difficult to remember alternatives. Just call the functions as
+=cvar::ES= and =cvar::VaR= if necessary.
+
+Locations-scale transformations can be specified separately
+from the other distribution parameters. This is useful when
+such parameters are not provided directly by the distribution
+at hand. The use of these parameters often leads to more
+efficient computations and better numerical accuracy even if
+the distribution has its own parameters for this purpose. Some
+of the examples for =VaR= and =ES= illustrate this
+for the Gaussian distribution.
+
+Since VaR is a quantile, functions computing it for a given
+distribution are convenience functions. =VaR= exported by
+=cvar= could be attractive in certain workflows because of
+its vectorised distribution parameters, the location-scale
+transformation and the possibility to compute it from cdf's
+when quantile functions are not available.
+
+
