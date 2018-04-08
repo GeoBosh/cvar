@@ -19,7 +19,7 @@ You can install the [development version](https://github.com/GeoBosh/cvar) of `c
 
 # Overview
 
-Package `cvar` is a small package with, essentially two
+Package `cvar` is a small `R` package with, essentially two
 functions &#x2014; `ES` for computing the expected shortfall
 and `VaR` for Value at Risk.  The user specifies the
 distribution by supplying one of the functions that define a

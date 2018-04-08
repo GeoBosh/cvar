@@ -1,6 +1,7 @@
 #+PROPERTY: header-args:R   :cache yes :session readme-r :results value :exports both
 #+OPTIONS: toc:nil
 
+
 Compute expected shortfall (ES) and Value at Risk (VaR) from a
 quantile function, distribution function, random number generator or
 probability density function.  ES is also known as Conditional Value
@@ -24,7 +25,7 @@ install_github("GeoBosh/cvar")
 
 * Overview
 
-Package =cvar= is a small package with, essentially two
+Package =cvar= is a small =R= package with, essentially two
 functions --- =ES= for computing the expected shortfall
 and =VaR= for Value at Risk.  The user specifies the
 distribution by supplying one of the functions that define a
