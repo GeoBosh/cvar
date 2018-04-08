@@ -1,0 +1,19 @@
+Package: cvar
+Type: Package
+Title: Compute Conditional Value-at-Risk and Value-at-Risk
+Version: 0.1-0
+Date: 2018-04-07
+Author: Georgi N. Boshnakov
+Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
+Description: Compute Conditional Value-at-Risk (CVaR) and
+     Value-at-Risk (VaR) from a quantile function, distribution
+     function, random number generator or probability dnsity function.
+     CVaR is also known as Expected shortfall. Virtually any
+     continuous distribution can be specified.  The functions are
+     vectorised over the arguments.
+Imports: stats, utils, gbutils, Rdpack (>= 0.7)
+RdMacros: Rdpack
+License: GPL (>=2)
+Collate: VaR.R cvar-package.R
+RoxygenNote: 6.0.1
+Suggests: testthat, PerformanceAnalytics
