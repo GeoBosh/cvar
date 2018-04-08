@@ -7,10 +7,6 @@ specified.  The functions are vectorised over the arguments.
 
 # Installing cvar
 
-The [latest stable version](https://cran.r-project.org/package=cvar) is on CRAN. 
-
-    install_packages("cvar")
-
 You can install the [development version](https://github.com/GeoBosh/cvar) of `cvar` from Github:
 
     library(devtools)

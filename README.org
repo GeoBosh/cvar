@@ -11,10 +11,10 @@ specified.  The functions are vectorised over the arguments.
 
 * Installing cvar
 
-The [[https://cran.r-project.org/package=cvar][latest stable version]] is on CRAN. 
-#+BEGIN_EXAMPLE
-install_packages("cvar")
-#+END_EXAMPLE
+# The [[https://cran.r-project.org/package=cvar][latest stable version]] is on CRAN. 
+# #+BEGIN_EXAMPLE
+# install_packages("cvar")
+# #+END_EXAMPLE
 
 
 You can install the [[https://github.com/GeoBosh/cvar][development version]] of =cvar= from Github:
