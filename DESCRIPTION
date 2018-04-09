@@ -1,8 +1,8 @@
 Package: cvar
 Type: Package
 Title: Compute Expected Shortfall and Value at Risk for Continuous Distributions
-Version: 0.1-0
-Date: 2018-04-08
+Version: 0.1-2
+Date: 2018-04-09
 Author: Georgi N. Boshnakov
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Description: Compute expected shortfall (ES) and Value at Risk (VaR) from a

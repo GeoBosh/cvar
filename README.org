@@ -7,14 +7,19 @@ quantile function, distribution function, random number generator or
 probability density function.  ES is also known as Conditional Value
 at Risk (CVaR). Virtually any continuous distribution can be
 specified.  The functions are vectorised over the arguments.
-
+The computations are done directly from the definitions, see e.g. Acerbi
+and Tasche (2002).
 
 * Installing cvar
 
-# The [[https://cran.r-project.org/package=cvar][latest stable version]] is on CRAN. 
-# #+BEGIN_EXAMPLE
-# install_packages("cvar")
-# #+END_EXAMPLE
+The [[https://cran.r-project.org/package=cvar][latest stable version]] is on CRAN. 
+#+BEGIN_EXAMPLE
+install_packages("cvar")
+#+END_EXAMPLE
+The vignette shipping with the package gives illustrative examples.
+`vignette("Guide_cvar", package = "cvar")`.
+(Due to a mixed-up index entry, it appears to have a puzzling title on the [[https://cran.r-project.org/package=cvar][CRAN cvar page]],
+but clicking on it brings up the correct vignette.)
 
 
 You can install the [[https://github.com/GeoBosh/cvar][development version]] of =cvar= from Github:
@@ -62,5 +67,3 @@ distribution are convenience functions. =VaR= exported by
 its vectorised distribution parameters, the location-scale
 transformation and the possibility to compute it from cdf's
 when quantile functions are not available.
-
-

@@ -88,8 +88,8 @@ distribution can be specified.
 This vignette is part of package \pkg{cvar}, version~0.1-0. %$
 }
 
-\Keywords{bibliographic references, Rd, bibtex, \proglang{R}}
-\Plainkeywords{bibliographic references, cite, Rd, R}
+\Keywords{expected shortfall, ES, CVaR, VaR, value at risk}
+\Plainkeywords{expected shortfall, ES, CVaR, VaR, value at risk}
 
 
 \begin{document}
@@ -117,6 +117,8 @@ continuous distribution---currently this can be a quantile
 function (qf), cumulative distribution function (cdf) or
 probability density function (pdf). Virtually any continuous
 distribution can be specified.
+The computations are done directly from the definitions, see e.g. 
+\citet{acerbi2002expected}.
 
 The functions are vectorised over the parameters of the
 distributions, making bulk computations more convenient, for
@@ -515,5 +517,7 @@ The relative precision is also good.
 \end{Soutput}
 \end{Schunk}
 
+\newpage{}
+\bibliography{REFERENCES}
 
 \end{document}

@@ -48,7 +48,7 @@
 
 
 % SweaveOpts{engine=R,eps=FALSE}
-%\VignetteIndexEntry{Inserting references in Rd and roxygen documentation}
+%\VignetteIndexEntry{Brief guide to R package \pkg{cvar}}
 %\VignetteDepends{cvar}
 %\VignetteKeywords{expected shortfall, ES, CVaR, VaR, value at risk}
 %\VignettePackage{cvar}
@@ -121,6 +121,8 @@ continuous distribution---currently this can be a quantile
 function (qf), cumulative distribution function (cdf) or
 probability density function (pdf). Virtually any continuous
 distribution can be specified.
+The computations are done directly from the definitions, see e.g. 
+\citet{acerbi2002expected}.
 
 The functions are vectorised over the parameters of the
 distributions, making bulk computations more convenient, for

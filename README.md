@@ -2,11 +2,21 @@ Compute expected shortfall (ES) and Value at Risk (VaR) from a
 quantile function, distribution function, random number generator or
 probability density function.  ES is also known as Conditional Value
 at Risk (CVaR). Virtually any continuous distribution can be
-specified.  The functions are vectorised over the arguments.  The
-computations are done directly from the definitions, see e.g. Acerbi
-and Tasche (2002)[<doi:10.1111/1468-0300.00091>].
+specified.  The functions are vectorised over the arguments.
+The computations are done directly from the definitions, see e.g. Acerbi
+and Tasche (2002).
+
 
 # Installing cvar
+
+The [latest stable version](https://cran.r-project.org/package=cvar) is on CRAN. 
+
+    install_packages("cvar")
+
+The vignette shipping with the package gives illustrative examples.
+\`vignette("Guide<sub>cvar</sub>", package = "cvar")\`.
+(Due to a mixed-up index entry, it appears to have a puzzling title on the [CRAN cvar page](https://cran.r-project.org/package=cvar),
+but clicking on it brings up the correct vignette.)
 
 You can install the [development version](https://github.com/GeoBosh/cvar) of `cvar` from Github:
 
