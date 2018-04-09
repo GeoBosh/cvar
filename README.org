@@ -17,7 +17,7 @@ The [[https://cran.r-project.org/package=cvar][latest stable version]] is on CRA
 install_packages("cvar")
 #+END_EXAMPLE
 The vignette shipping with the package gives illustrative examples.
-`vignette("Guide_cvar", package = "cvar")`.
+=vignette("Guide_cvar", package = "cvar")=.
 (Due to a mixed-up index entry, it appears to have a puzzling title on the [[https://cran.r-project.org/package=cvar][CRAN cvar page]],
 but clicking on it brings up the correct vignette.)
 
