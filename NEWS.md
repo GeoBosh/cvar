@@ -3,6 +3,9 @@
 - corrected \VignetteIndexEntry in the vignette --- I used the vignette for Rdpack as a
   template but didn't change this entry!
 
+- added author@R in DESCRIPTION.
+
+- added experimental web site (docs/)
 
 # Changes in Version 0.1-1 (CRAN)
 

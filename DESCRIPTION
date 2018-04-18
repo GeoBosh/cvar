@@ -3,8 +3,9 @@ Type: Package
 Title: Compute Expected Shortfall and Value at Risk for Continuous Distributions
 Version: 0.1-2
 Date: 2018-04-09
-Author: Georgi N. Boshnakov
-Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
+Authors@R: person(given = c("Georgi", "N."), family = "Boshnakov",
+                  role = c("aut", "cre"), 
+                  email = "georgi.boshnakov@manchester.ac.uk")
 Description: Compute expected shortfall (ES) and Value at Risk (VaR) from a
     quantile function, distribution function, random number generator or
     probability density function.  ES is also known as Conditional Value at
