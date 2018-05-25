@@ -76,3 +76,8 @@
 #' ## see the examples in \code{\link{ES}} and \code{\link{VaR}}
 #'
 NULL
+
+.onLoad <- function(lib, pkg){
+    Rdpack::Rdpack_bibstyles(package = pkg, authors = "LongNames")
+    invisible(NULL)
+}
