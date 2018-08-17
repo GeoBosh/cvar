@@ -8,8 +8,8 @@
 <title>Compute Expected Shortfall and Value at Risk for Continuous Distributions • cvar</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Compute Expected Shortfall and Value at Risk for Continuous Distributions">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><meta property="og:title" content="Compute Expected Shortfall and Value at Risk for Continuous Distributions">
 <meta property="og:description" content="Compute expected shortfall (ES) and Value at Risk (VaR) from a
     quantile function, distribution function, random number generator or
     probability density function.  ES is also known as Conditional Value at
@@ -78,11 +78,11 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#installing-cvar" class="anchor"></a>Installing cvar</h1></div>
 <p>The <a href="https://cran.r-project.org/package=cvar">latest stable version</a> is on CRAN.</p>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r"><span class="kw">install_packages</span>(<span class="st">"cvar"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install_packages</span>(<span class="st">"cvar"</span>)</a></code></pre></div>
 <p>The vignette shipping with the package gives illustrative examples. <code>vignette("Guide_cvar", package = "cvar")</code>. (Due to a mixed-up index entry, it appears to have a puzzling title on the <a href="https://cran.r-project.org/package=cvar">CRAN cvar page</a>, but clicking on it brings up the correct vignette.)</p>
 <p>You can install the <a href="https://github.com/GeoBosh/cvar">development version</a> of <code>cvar</code> from Github:</p>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r"><span class="kw">library</span>(devtools)
-<span class="kw">install_github</span>(<span class="st">"GeoBosh/cvar"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(devtools)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">install_github</span>(<span class="st">"GeoBosh/cvar"</span>)</a></code></pre></div>
 </div>
 <div id="overview" class="section level1">
 <h1 class="hasAnchor">

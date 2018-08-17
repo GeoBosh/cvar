@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Compute Value-at-Risk (VaR) of distributions — VaR" />
 
 <meta property="og:description" content="Var computes the Value-at-Risk of the distribution specified by the
@@ -40,8 +43,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
 
 
   </head>
@@ -99,15 +100,17 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute Value-at-Risk (VaR) of distributions</h1>
-    <small>Source: <a href='https://github.com/GeoBosh/cvar/blob/master/R/VaR.R'><code>R/VaR.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/GeoBosh/cvar/blob/master/R/VaR.R'><code>R/VaR.R</code></a></small>
     <div class="hidden name"><code>VaR.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p><code>Var</code> computes the Value-at-Risk of the distribution specified by the
     arguments. The meaning of the parameters is the same as in <code><a href='ES.html'>ES</a></code>, including
     the recycling rules.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>VaR</span>(<span class='no'>dist</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"qf"</span>, <span class='no'>...</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.5</span>)

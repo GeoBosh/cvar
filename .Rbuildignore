@@ -11,3 +11,5 @@
 ^sav[0-9]*[.]Rhistory
 ^NAMESPACEsav$
 ^vignettes/.RData
+^_pkgdown\.yml$
+^docs$
