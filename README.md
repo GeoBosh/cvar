@@ -2,7 +2,7 @@
 
 # cvar
 
-[![CRAN<sub>Status</sub><sub>Badge</sub>](https://cran.r-project.org/package=Rdpack)]
+[![CRAN\_Status\_Badge](https://cran.r-project.org/package=Rdpack)]
 
 
 ## Overviewmm
