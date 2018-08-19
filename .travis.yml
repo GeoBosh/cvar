@@ -2,7 +2,7 @@
 
 language: r
 cache: packages
-latex: false
+latex: true
 
 matrix:
   include:
