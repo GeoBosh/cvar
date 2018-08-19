@@ -1,14 +1,20 @@
+# cvar 0.2-0 (CRAN)
+
+* prepare for CRAN
+
 # cvar 0.1-3
 
-* suggest 'covr' 
+* suggest 'covr'.
 
-* setup for travisCI and Coveralls
+* setup for travisCI and Coveralls.
 
+* more tests.
 
 # cvar 0.1-2
 
 * corrected \VignetteIndexEntry in the vignette --- I used the vignette for Rdpack as a
-  template but didn't change this entry!
+  template but didn't change this entry, which resulted in the vignette appearing with a
+  puzzling title on CRAN and other sites.!
 
 * added author@R in DESCRIPTION.
 

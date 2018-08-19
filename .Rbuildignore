@@ -1,3 +1,7 @@
+vignettes/Guide_cvar.bbl
+vignettes/Guide_cvar.blg
+jss.bst
+jss.cls
 ^.travis.yml
 ^docs/
 ^revdep$
