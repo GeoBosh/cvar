@@ -3,6 +3,7 @@
 # cvar
 
 [![CRANStatusBadge](http://www.r-pkg.org/badges/version/cvar)](https://cran.r-project.org/package=cvar)
+[![Build Status](https://travis-ci.com/GeoBosh/cvar.svg?branch=master)](https://travis-ci.com/GeoBosh/cvar)
 
 
 ## Overview
