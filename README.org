@@ -3,35 +3,12 @@
 
 * cvar
 
-# from README.md in readxl https://raw.githubusercontent.com/tidyverse/readxl/master/README.md
-#
-#  build status (travis?)
-# [![Travis-CI Build Status](https://travis-ci.org/tidyverse/readxl.svg?branch=master)](https://travis-ci.org/tidyverse/readxl)
-#
-# build status (appveyor?)
-# [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/tidyverse/readxl?branch=master&svg=true)](https://ci.appveyor.com/project/tidyverse/readxl)
-#
-# coverage
-# [![Coverage Status](https://img.shields.io/codecov/c/github/tidyverse/readxl/master.svg)](https://codecov.io/github/tidyverse/readxl?branch=master)
-#
-# version
-# [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/readxl)](https://cran.r-project.org/package=readxl)
-#
-# [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-
-# [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
 #+BEGIN_EXPORT html
 [![CRANStatusBadge](http://www.r-pkg.org/badges/version/cvar)](https://cran.r-project.org/package=cvar)
 [![Build Status](https://travis-ci.com/GeoBosh/cvar.svg?branch=master)](https://travis-ci.com/GeoBosh/cvar)
 [![Coverage Status](https://coveralls.io/repos/github/GeoBosh/cvar/badge.svg?branch=master)](https://coveralls.io/github/GeoBosh/cvar?branch=master)
 #+END_EXPORT
 
-
-# [[https://cran.r-project.org/package=Rdpack][~![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)~
-
-# [[https://www.r-pkg.org/badges/version/readxl][CRAN\_Status\_Badge]
-
-# [[https://cran.r-project.org/package=Rdpack]
 
 
 ** Overview
