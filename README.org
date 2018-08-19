@@ -19,9 +19,11 @@
 #
 # [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
+http://www.r-pkg.org/badges/version/Rdpack
 
+# [[https://www.r-pkg.org/badges/version/readxl][CRAN\_Status\_Badge]
 
-[![[https://cran.r-project.org/package=Rdpack][CRAN\_Status\_Badge]]]
+# [[https://cran.r-project.org/package=Rdpack]
 
 
 ** Overviewmm

@@ -2,7 +2,7 @@
 
 # cvar
 
-[![CRAN\_Status\_Badge](https://cran.r-project.org/package=Rdpack)]
+<http://www.r-pkg.org/badges/version/Rdpack>
 
 
 ## Overviewmm
