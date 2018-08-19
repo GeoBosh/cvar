@@ -2,7 +2,7 @@
 
 # cvar
 
-[http://www.r-pkg.org/badges/version/Rdpack](https://cran.r-project.org/package=Rdpack)
+[![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
 
 
 ## Overview

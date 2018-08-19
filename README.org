@@ -20,7 +20,12 @@
 # [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 # [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
-[[https://cran.r-project.org/package=Rdpack][http://www.r-pkg.org/badges/version/Rdpack]]
+#+BEGIN_EXPORT html
+[![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
+#+END_EXPORT
+
+
+# [[https://cran.r-project.org/package=Rdpack][~![CRANStatusBadge](http://www.r-pkg.org/badges/version/Rdpack)~
 
 # [[https://www.r-pkg.org/badges/version/readxl][CRAN\_Status\_Badge]
 
