@@ -11,6 +11,9 @@ res1 <- cvar::VaR(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
 res2 <- cvar::VaR(qnorm, x = 0.05, intercept = muA, slope = sqrt(sigma2A))
 abs((res2 - res1)) # 0, intercept/slope equivalent to mean/sd
 
+expect_error(cvar::VaR(dnorm, dist.type = "pdf", x = 0.05, intercept = muA, slope = sqrt(sigma2A)), "Not ready")
+cvar::VaR_qf(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
+
 ## with cdf the precision depends on solving an equation
 res1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A))
 res2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A))
