@@ -4,6 +4,7 @@
 
 [![CRANStatusBadge](http://www.r-pkg.org/badges/version/cvar)](https://cran.r-project.org/package=cvar)
 [![Build Status](https://travis-ci.com/GeoBosh/cvar.svg?branch=master)](https://travis-ci.com/GeoBosh/cvar)
+[![Coverage Status](https://coveralls.io/repos/github/GeoBosh/cvar/badge.svg?branch=master)](https://coveralls.io/github/GeoBosh/cvar?branch=master)
 
 
 ## Overview

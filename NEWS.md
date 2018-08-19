@@ -1,17 +1,24 @@
-# Changes in Version 0.1-2
+# cvar 0.1-3
 
-- corrected \VignetteIndexEntry in the vignette --- I used the vignette for Rdpack as a
+* suggest 'covr' 
+
+* setup for travisCI and Coveralls
+
+
+# cvar 0.1-2
+
+* corrected \VignetteIndexEntry in the vignette --- I used the vignette for Rdpack as a
   template but didn't change this entry!
 
-- added author@R in DESCRIPTION.
+* added author@R in DESCRIPTION.
 
-- added experimental web site (docs/)
+* added experimental web site (docs/)
 
-# Changes in Version 0.1-1 (CRAN)
+# cvar 0.1-1 (CRAN)
 
-- added a doi to DESCRIPTION.
+* added a doi to DESCRIPTION.
 
 
-# Changes in Version 0.1-0
+# cvar 0.1-0
 
-- first public release.
+* first public release.
