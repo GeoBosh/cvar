@@ -2,10 +2,10 @@
 
 # cvar
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Rdpack)](https://cran.r-project.org/package=Rdpack)
+[http://www.r-pkg.org/badges/version/Rdpack](https://cran.r-project.org/package=Rdpack)
 
 
-## Overviewmm
+## Overview
 
 Compute expected shortfall (ES) and Value at Risk (VaR) from a
 quantile function, distribution function, random number generator or
