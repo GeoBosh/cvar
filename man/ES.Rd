@@ -4,8 +4,8 @@
 \alias{ES}
 \title{Compute expected shortfall (ES) of distributions}
 \usage{
-ES(dist, x = 0.05, dist.type = "qf", qf, ..., intercept = 0, slope = 1,
-  control = list())
+ES(dist, x = 0.05, dist.type = "qf", qf, ..., intercept = 0,
+  slope = 1, control = list())
 }
 \arguments{
 \item{dist}{specifies the distribution whose ES is computed, usually a function or a name

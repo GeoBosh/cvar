@@ -2,16 +2,13 @@
 % Please edit documentation in R/VaR.R
 \name{VaR}
 \alias{VaR}
-\alias{VaR}
 \alias{VaR_qf}
-\alias{VaR}
 \alias{VaR_cdf}
-\alias{VaR}
 \alias{VaR.default}
 \title{Compute Value-at-Risk (VaR) of distributions}
 \usage{
-VaR(dist, x = 0.05, dist.type = "qf", ..., intercept = 0, slope = 1,
-  tol = .Machine$double.eps^0.5)
+VaR(dist, x = 0.05, dist.type = "qf", ..., intercept = 0,
+  slope = 1, tol = .Machine$double.eps^0.5)
 
 VaR_qf(dist, x = 0.05, ..., intercept = 0, slope = 1,
   tol = .Machine$double.eps^0.5)

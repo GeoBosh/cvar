@@ -19,8 +19,5 @@ Imports: gbutils, Rdpack (>= 0.8)
 RdMacros: Rdpack
 License: GPL (>=2)
 Collate: VaR.R cvar-package.R
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Suggests: testthat, PerformanceAnalytics
-
-
-

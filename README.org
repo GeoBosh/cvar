@@ -1,6 +1,30 @@
 #+PROPERTY: header-args:R   :cache yes :session readme-r :results value :exports both
 #+OPTIONS: toc:nil
 
+* cvar
+
+# from README.md in readxl https://raw.githubusercontent.com/tidyverse/readxl/master/README.md
+#
+#  build status (travis?)
+# [![Travis-CI Build Status](https://travis-ci.org/tidyverse/readxl.svg?branch=master)](https://travis-ci.org/tidyverse/readxl)
+#
+# build status (appveyor?)
+# [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/tidyverse/readxl?branch=master&svg=true)](https://ci.appveyor.com/project/tidyverse/readxl)
+#
+# coverage
+# [![Coverage Status](https://img.shields.io/codecov/c/github/tidyverse/readxl/master.svg)](https://codecov.io/github/tidyverse/readxl?branch=master)
+#
+# version
+# [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/readxl)](https://cran.r-project.org/package=readxl)
+#
+# [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+
+
+
+[![[https://cran.r-project.org/package=Rdpack][CRAN_Status_Badge]]]
+
+
+** Overviewmm
 
 Compute expected shortfall (ES) and Value at Risk (VaR) from a
 quantile function, distribution function, random number generator or
@@ -10,7 +34,7 @@ specified.  The functions are vectorised over the arguments.
 The computations are done directly from the definitions, see e.g. Acerbi
 and Tasche (2002).
 
-* Installing cvar
+** Installing cvar
 
 The [[https://cran.r-project.org/package=cvar][latest stable version]] is on CRAN. 
 #+BEGIN_EXAMPLE
@@ -28,7 +52,7 @@ library(devtools)
 install_github("GeoBosh/cvar")
 #+END_EXAMPLE
 
-* Overview
+** Overview
 
 Package =cvar= is a small =R= package with, essentially two
 functions --- =ES= for computing the expected shortfall
