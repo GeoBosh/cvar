@@ -96,3 +96,65 @@ cvar::ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm)
 
 
 })
+
+
+## These tests are temporary, copied from those for ES and ES renamed to CVaR
+test_that("CVaR works ok", {
+cvar:::CVaR(qnorm)
+
+## Gaussian
+cvar:::CVaR(qnorm, dist.type = "qf")
+cvar:::CVaR(pnorm, dist.type = "cdf")
+
+## t-dist
+cvar:::CVaR(qt, dist.type = "qf", df = 4)
+cvar:::CVaR(pt, dist.type = "cdf", df = 4)
+
+cvar:::CVaR(pnorm, x= 0.95, dist.type = "cdf")
+cvar:::CVaR(qnorm, x= 0.95, dist.type = "qf")
+## - VaRES::esnormal(0.95, 0, 1)
+## - PerformanceAnalytics::ETL(p=0.05, method = "gaussian", mu = 0,
+##                             sigma = 1, weights = 1)             # same
+
+cvar:::CVaR(pnorm, dist.type = "cdf")
+cvar:::CVaR(qnorm, dist.type = "qf")
+cvar:::CVaR(pnorm, x= 0.05, dist.type = "cdf")
+cvar:::CVaR(qnorm, x= 0.05, dist.type = "qf")
+
+## this uses "pdf"
+cvar:::CVaR(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm)
+
+})
+
+
+## These tests are temporary, copied from those for ES and ES renamed to AVaR
+test_that("AVaR works ok", {
+cvar:::AVaR(qnorm)
+
+## Gaussian
+cvar:::AVaR(qnorm, dist.type = "qf")
+cvar:::AVaR(pnorm, dist.type = "cdf")
+
+## t-dist
+cvar:::AVaR(qt, dist.type = "qf", df = 4)
+cvar:::AVaR(pt, dist.type = "cdf", df = 4)
+
+cvar:::AVaR(pnorm, x= 0.95, dist.type = "cdf")
+cvar:::AVaR(qnorm, x= 0.95, dist.type = "qf")
+## - VaRES::esnormal(0.95, 0, 1)
+## - PerformanceAnalytics::ETL(p=0.05, method = "gaussian", mu = 0,
+##                             sigma = 1, weights = 1)             # same
+
+cvar:::AVaR(pnorm, dist.type = "cdf")
+cvar:::AVaR(qnorm, dist.type = "qf")
+cvar:::AVaR(pnorm, x= 0.05, dist.type = "cdf")
+cvar:::AVaR(qnorm, x= 0.05, dist.type = "qf")
+
+## this uses "pdf"
+cvar:::AVaR(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm)
+
+})
+
+
+
+
