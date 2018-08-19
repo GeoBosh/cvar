@@ -20,4 +20,4 @@ RdMacros: Rdpack
 License: GPL (>=2)
 Collate: VaR.R cvar-package.R
 RoxygenNote: 6.1.0
-Suggests: testthat, PerformanceAnalytics
+Suggests: testthat, PerformanceAnalytics, covr
