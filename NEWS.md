@@ -1,3 +1,8 @@
+# cvar 0.2-1
+
+* Now `\VignetteIndexEntry` in `Guide_cvar.Rnw` is plain text.
+
+
 # cvar 0.2-0 (CRAN)
 
 * prepare for CRAN

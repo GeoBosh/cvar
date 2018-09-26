@@ -44,6 +44,14 @@ slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.
     arguments. The meaning of the parameters is the same as in \code{\link{ES}}, including
     the recycling rules.
 }
+\details{
+\code{VaR} is S3 generic. The meaning of the parameters for its default method is the
+    same as in \code{\link{ES}}, including the recycling rules.
+
+    \code{VaR_qf} and \code{VaR_cdf} are streamlined, non-generic, variants for the common
+    case when the \code{"..."} parameters are scalar. The parameters \code{x},
+    \code{intercept}, and \code{slope} can be vectors, as for \code{VaR}.
+}
 \note{
 We use the traditional definition of VaR as the negated lower quantile. For example,
     if \eqn{X} are returns on an asset, VAR\eqn{{}_\alpha}{_a} = \eqn{-q_\alpha}{-q_a},
@@ -83,7 +91,7 @@ abs((res2b - res2)/res2) # 3.91785e-15
 
 
 ## an extended example with vector args, if "PerformanceAnalytics" is present
-if(require("PerformanceAnalytics")){
+if (requireNamespace("PerformanceAnalytics", quietly = TRUE)) withAutoprint({
     data(edhec, package = "PerformanceAnalytics")
     mu <- apply(edhec, 2, mean)
     sigma2 <- apply(edhec, 2, var)
@@ -118,6 +126,6 @@ if(require("PerformanceAnalytics")){
 
     max(abs((vPA - vAz1b))) # 4.374869e-13
     max(abs((vPA - vAz2b))) # 3.330669e-16
-}
+})
 
 }

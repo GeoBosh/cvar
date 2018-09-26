@@ -26,7 +26,7 @@ There is a huge number of functions for computations with
     covering comprehensively various aspects of risk measurement,
     including some functions for expected shortfall.
 
-    Package \pkg{cvar} is a small package with, essentially two
+    Package \pkg{cvar} is a small package with, essentially, two main
     functions --- \code{ES} for computing the expected shortfall
     and \code{VaR} for Value at Risk.  The user specifies the
     distribution by supplying one of the functions that define a
@@ -62,11 +62,11 @@ There is a huge number of functions for computations with
     distribution are convenience functions. \code{VaR} exported by
     \pkg{cvar} could be attractive in certain workflows because of
     its vectorised distribution parameters, the location-scale
-    transformation and the possibility to compute it from cdf's
+    transformation, and the possibility to compute it from cdf's
     when quantile functions are not available.
 }
 \examples{
-## see the examples in \\code{\\link{ES}} and \\code{\\link{VaR}}
+## see the examples in for ES() and VaR()
 
 }
 \references{

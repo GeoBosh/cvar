@@ -31,23 +31,23 @@ a numeric vector
 }
 \description{
 \code{ES} computes the expected shortfall for distributions specified by the
-    arguments. \code{dist} is typically a function (or the name of one). What it computes
-    is determined by \code{dist.type}. The default setting of \code{dist.type} is
-    \code{"qf"} (the quantile function). Other possible settings of \code{dist.type}
-    include \code{"cdf"} and \code{"pdf"}.  Additional arguments for \code{dist} can be
-    given with the \code{"..."} arguments.
+    arguments. \code{dist} is typically a function (or the name of one). What \code{dist}
+    computes is determined by \code{dist.type}, whose default setting is \code{"qf"} (the
+    quantile function). Other possible settings of \code{dist.type} include \code{"cdf"}
+    and \code{"pdf"}.  Additional arguments for \code{dist} can be given with the
+    \code{"..."} arguments.
 
     Except for the exceptions discussed below, a function computing VaR for the specified
     distribution is constructed and the expected shortfall is computed by numerically
-    integrating it. The numerical integration can be fine tuned with argument
+    integrating it. The numerical integration can be fine-tuned with argument
     \code{control}, which should be a named list, see \code{\link{integrate}} for the
     available options.
 
     If \code{dist.type} is \code{"pdf"}, VaR is not computed, Instead, the partial
-    expectation of the lower tail is computed by numerical integration of \eqn{x*pdf(x)}.
-    Currently the quantile function is required, via argument \code{qf}, to compute the
-    upper limit of the integral. So, this case is mainly for testing and comparison
-    purposes.
+    expectation of the lower tail is computed by numerical integration of \code{x *
+    pdf(x)}.  Currently the quantile function is required anyway, via argument \code{qf},
+    to compute the upper limit of the integral. So, this case is mainly for testing and
+    comparison purposes.
 
 
     A bunch of expected shortfalls is computed if argument \code{x} or any of the
@@ -56,21 +56,21 @@ a numeric vector
 
     \code{intercept} and \code{slope} can be used to compute the expected shortfall for
     the location-scale transformation \code{Y = intercept + slope * X}, where the
-    distribution of $X$ is as specified by the other parameters. The expected shortfall of
-    \code{X} is calculated and then transformed to that of \code{Y}. Note that \code{X}
-    doesn't need to have a standardised distribution, although it will typically will.
+    distribution of \code{X} is as specified by the other parameters and \code{Y} is the
+    variable of interest. The expected shortfall of \code{X} is calculated and then
+    transformed to that of \code{Y}. Note that the distribution of \code{X} doesn't need
+    to be standardised, although it typically will.
 
     The \code{intercept} and the \code{slope} can be vectors. Using them may be
     particularly useful for cheap calculations in, for example, forecasting, where the
     predictive distributions are often from the same family, but with different location
     and scale parameters. Conceptually, the described treatment of \code{intercept} and
-    \code{slope} is equivalent to recycling them with along with the other arguments, but
-    more efficient.
+    \code{slope} is equivalent to recycling them along with the other arguments, but more
+    efficiently.
 
-    The names, \code{intercept} and \code{slope}, for the location and scale parameter,
-    respectively, were chosen for their expressiveness and to minimise the possibility for
-    a clash with parameters of \code{dist} (e.g., the Gamma distribution has parameter
-    \code{scale}).
+    The names, \code{intercept} and \code{slope}, for the location and scale parameters
+    were chosen for their expressiveness and to minimise the possibility for a clash with
+    parameters of \code{dist} (e.g., the Gamma distribution has parameter \code{scale}).
 }
 \examples{
 ES(qnorm)

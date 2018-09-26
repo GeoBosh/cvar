@@ -48,7 +48,7 @@
 
 
 % SweaveOpts{engine=R,eps=FALSE}
-%\VignetteIndexEntry{Brief guide to R package \pkg{cvar}}
+%\VignetteIndexEntry{Brief guide to R package cvar}
 %\VignetteDepends{cvar}
 %\VignetteKeywords{expected shortfall, ES, CVaR, VaR, value at risk}
 %\VignettePackage{cvar}
