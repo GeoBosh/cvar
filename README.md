@@ -15,7 +15,7 @@ probability density function.  ES is also known as Conditional Value
 at Risk (CVaR). Virtually any continuous distribution can be
 specified.  The functions are vectorised over the arguments.
 The computations are done directly from the definitions, see e.g. Acerbi
-and Tasche (2002).
+and Tasche (2002). Some support for GARCH models is provided, as well.
 
 
 ## Installing cvar
