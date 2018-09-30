@@ -6,12 +6,12 @@
 \alias{cvar}
 \title{Compute Conditional Value-at-Risk and Value-at-Risk}
 \description{
-Compute expected shortfall (ES) and Value at Risk
-    (VaR) from a quantile function, distribution function, random
-    number generator or probability density function.  ES is also
-    known as Conditional Value at Risk (CVaR). Virtually any
-    continuous distribution can be specified.  The functions are
-    vectorised over the arguments.
+Compute expected shortfall (ES) and Value at Risk (VaR)
+    from a quantile function, distribution function, random number
+    generator or probability density function.  ES is also known as
+    Conditional Value at Risk (CVaR). Virtually any continuous
+    distribution can be specified.  The functions are vectorised over
+    the arguments. Some support for GARCH models is provided, as well.
 }
 \details{
 There is a huge number of functions for computations with
@@ -64,9 +64,13 @@ There is a huge number of functions for computations with
     its vectorised distribution parameters, the location-scale
     transformation, and the possibility to compute it from cdf's
     when quantile functions are not available.
+
+    Some support for GARCH models is provided, as well. It is
+    currently under development, see \code{\link{predict.garch1c1}}
+    for current functionality.
 }
 \examples{
-## see the examples in for ES() and VaR()
+## see the examples for ES(), VaR(), predict.garch1c1()
 
 }
 \references{

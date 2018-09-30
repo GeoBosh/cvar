@@ -5,6 +5,7 @@
 \alias{VaR_qf}
 \alias{VaR_cdf}
 \alias{VaR.default}
+\alias{VaR.numeric}
 \title{Compute Value-at-Risk (VaR) of distributions}
 \usage{
 VaR(dist, x = 0.05, dist.type = "qf", ..., intercept = 0,
@@ -18,6 +19,8 @@ VaR_cdf(dist, x = 0.05, ..., intercept = 0, slope = 1,
 
 \method{VaR}{default}(dist, x = 0.05, dist.type = "qf", ...,
   intercept = 0, slope = 1, tol = .Machine$double.eps^0.5)
+
+\method{VaR}{numeric}(dist, x = 0.05, ..., intercept = 0, slope = 1)
 }
 \arguments{
 \item{dist}{specifies the distribution whose ES is computed, usually a function or a name

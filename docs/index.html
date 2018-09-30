@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cvar</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -72,11 +72,18 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    
-<p>Compute expected shortfall (ES) and Value at Risk (VaR) from a quantile function, distribution function, random number generator or probability density function. ES is also known as Conditional Value at Risk (CVaR). Virtually any continuous distribution can be specified. The functions are vectorised over the arguments. The computations are done directly from the definitions, see e.g. Acerbi and Tasche (2002).</p>
-<div id="installing-cvar" class="section level1">
+    <div id="cvar" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#installing-cvar" class="anchor"></a>Installing cvar</h1></div>
+<a href="#cvar" class="anchor"></a>cvar</h1></div>
+
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p>Compute expected shortfall (ES) and Value at Risk (VaR) from a quantile function, distribution function, random number generator or probability density function. ES is also known as Conditional Value at Risk (CVaR). Virtually any continuous distribution can be specified. The functions are vectorised over the arguments. The computations are done directly from the definitions, see e.g. Acerbi and Tasche (2002).</p>
+</div>
+<div id="installing-cvar" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installing-cvar" class="anchor"></a>Installing cvar</h2>
 <p>The <a href="https://cran.r-project.org/package=cvar">latest stable version</a> is on CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install_packages</span>(<span class="st">"cvar"</span>)</a></code></pre></div>
 <p>The vignette shipping with the package gives illustrative examples. <code>vignette("Guide_cvar", package = "cvar")</code>. (Due to a mixed-up index entry, it appears to have a puzzling title on the <a href="https://cran.r-project.org/package=cvar">CRAN cvar page</a>, but clicking on it brings up the correct vignette.)</p>
@@ -84,17 +91,17 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(devtools)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">install_github</span>(<span class="st">"GeoBosh/cvar"</span>)</a></code></pre></div>
 </div>
-<div id="overview" class="section level1">
-<h1 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h1>
+<div id="overview-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview-1" class="anchor"></a>Overview</h2>
 <p>Package <code>cvar</code> is a small <code>R</code> package with, essentially two functions — <code>ES</code> for computing the expected shortfall and <code>VaR</code> for Value at Risk. The user specifies the distribution by supplying one of the functions that define a continuous distribution—currently this can be a quantile function (qf), cumulative distribution function (cdf) or probability density function (pdf). Virtually any continuous distribution can be specified.</p>
 <p>The functions are vectorised over the parameters of the distributions, making bulk computations more convenient, for example for forecasting or model evaluation.</p>
 <p>The name of this package, “cvar”, comes from <em>Conditional Value at Risk</em> (CVaR), which is an alternative term for expected shortfall.</p>
-<p>We chose to use the standard names <code>ES</code> and <code>VaR</code>, despite the possibility for name clashes with same named functions in other packages, rather than invent possibly difficult to remember alternatives. Just call the functions as <code><a href="reference/ES.html">cvar::ES</a></code> and <code>cvar::VaR</code> if necessary.</p>
+<p>We chose to use the standard names <code>ES</code> and <code>VaR</code>, despite the possibility for name clashes with same named functions in other packages, rather than invent possibly difficult to remember alternatives. Just call the functions as <code><a href="reference/ES.html">cvar::ES</a></code> and <code><a href="reference/VaR.html">cvar::VaR</a></code> if necessary.</p>
 <p>Locations-scale transformations can be specified separately from the other distribution parameters. This is useful when such parameters are not provided directly by the distribution at hand. The use of these parameters often leads to more efficient computations and better numerical accuracy even if the distribution has its own parameters for this purpose. Some of the examples for <code>VaR</code> and <code>ES</code> illustrate this for the Gaussian distribution.</p>
 <p>Since VaR is a quantile, functions computing it for a given distribution are convenience functions. <code>VaR</code> exported by <code>cvar</code> could be attractive in certain workflows because of its vectorised distribution parameters, the location-scale transformation and the possibility to compute it from cdf’s when quantile functions are not available.</p>
 </div>
-
+</div>
   </div>
 
   <div class="col-md-3" id="sidebar">
@@ -122,7 +129,15 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=cvar"><img src="http://www.r-pkg.org/badges/version/cvar" alt="CRANStatusBadge"></a></li>
+<li><a href="https://travis-ci.com/GeoBosh/cvar"><img src="https://travis-ci.com/GeoBosh/cvar.svg?branch=master" alt="Build Status"></a></li>
+<li><a href="https://coveralls.io/github/GeoBosh/cvar?branch=master"><img src="https://coveralls.io/repos/github/GeoBosh/cvar/badge.svg?branch=master" alt="Coverage Status"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 

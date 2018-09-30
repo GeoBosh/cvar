@@ -155,6 +155,16 @@ VaR.default <- function(dist, x = 0.05, dist.type = "qf", ...,
     - intercept + slope * res
 }
 
+#' @name VaR
+#'
+#' @export
+VaR.numeric <- function(dist, x = 0.05, ..., intercept = 0, slope  = 1){
+    ## dist is raw data here
+    res <- - quantile(dist, x, ...)
+
+    - intercept + slope * res
+}
+
 
 
 ## VaR <- function(dist, x = 0.05, dist.type = "qf", ...,
@@ -301,6 +311,15 @@ VaR.default <- function(dist, x = 0.05, dist.type = "qf", ...,
 #' @export
 ES <- function(dist, x = 0.05, dist.type = "qf", qf, ...,
                intercept = 0, slope = 1, control = list()){
+
+    ## 2018-09-30 handle "numeric" to complement VaR.numeric()
+    if(is.numeric(dist)){
+        v <- VaR.numeric(dist, x = 0.05, ..., intercept = intercept, slope = slope)
+        bad <- dist[dist <= - v]
+        res <- - mean(bad)
+        return(res)
+    }
+
     dist <- match.fun(dist)
 
     if(length(x) == 1 && all(sapply(list(...), length) < 2)){

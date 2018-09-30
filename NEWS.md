@@ -1,6 +1,12 @@
 # cvar 0.2-1
 
-* Now `\VignetteIndexEntry` in `Guide_cvar.Rnw` is plain text.
+* now `\VignetteIndexEntry` in `Guide_cvar.Rnw` is plain text.
+
+* added experimental support for GARCH models - currently GARCH(1,1) (the API
+  may change).
+
+* now the first argument of `VaR()` and `ES()` can be a numeric vector. This is
+  useful, e.g., for computing VaR by simulation.
 
 
 # cvar 0.2-0 (CRAN)
