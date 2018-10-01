@@ -75,6 +75,16 @@ There is a huge number of functions for computations with
 }
 \references{
 \insertAllCited{}
+
+---
+
+This is for pkgdown test. The following two phrases should be in separate paragraphs:
+
+\Sexpr[stage=build,results=rd]{paste0(c("First phrase.", "Second phrase."), collapse = "\n\n")}
+
+---
+
+\Sexpr[stage=build,results=rd]{paste0("First phrase.\n\nSecond phrase.")}
 }
 \author{
 Georgi N. Boshnakov

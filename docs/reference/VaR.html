@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -34,6 +36,7 @@
     arguments. The meaning of the parameters is the same as in ES, including
     the recycling rules." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -60,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cvar</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -112,8 +115,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>VaR</span>(<span class='no'>dist</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"qf"</span>, <span class='no'>...</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.5</span>)
+    <pre class="usage"><span class='fu'>VaR</span>(<span class='no'>dist</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"qf"</span>, <span class='no'>...</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.5</span>)
 
 <span class='fu'>VaR_qf</span>(<span class='no'>dist</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='no'>...</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.5</span>)
@@ -123,7 +126,10 @@
 
 <span class='co'># S3 method for default</span>
 <span class='fu'>VaR</span>(<span class='no'>dist</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"qf"</span>, <span class='no'>...</span>,
-  <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.5</span>)</pre>
+  <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.5</span>)
+
+<span class='co'># S3 method for numeric</span>
+<span class='fu'>VaR</span>(<span class='no'>dist</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='no'>...</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,6 +169,14 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>VaR</code> is S3 generic. The meaning of the parameters for its default method is the
+    same as in <code><a href='ES.html'>ES</a></code>, including the recycling rules.</p>
+<p><code>VaR_qf</code> and <code>VaR_cdf</code> are streamlined, non-generic, variants for the common
+    case when the <code>"..."</code> parameters are scalar. The parameters <code>x</code>,
+    <code>intercept</code>, and <code>slope</code> can be vectors, as for <code>VaR</code>.</p>
+    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>We use the traditional definition of VaR as the negated lower quantile. For example,
@@ -173,48 +187,48 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.01</span>, <span class='fl'>0.05</span>), <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"qf"</span>)</div><div class='output co'>#&gt; [1] 2.326348 1.644854</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.01</span>, <span class='fl'>0.05</span>), <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"qf"</span>)</div><div class='output co'>#&gt; [1] 2.326348 1.644854</div><div class='input'>
 <span class='co'>## the following examples use these values:</span>
 <span class='no'>muA</span> <span class='kw'>&lt;-</span> <span class='fl'>0.006408553</span>
 <span class='no'>sigma2A</span> <span class='kw'>&lt;-</span> <span class='fl'>0.0004018977</span>
 
 <span class='co'>## with quantile function</span>
-<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>))
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>))
+<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>))
+<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>))
 <span class='fu'>abs</span>((<span class='no'>res2</span> - <span class='no'>res1</span>)) <span class='co'># 0, intercept/slope equivalent to mean/sd</span></div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='co'>## with cdf the precision depends on solving an equation</span>
-<span class='no'>res1a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>))
-<span class='no'>res2a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>))
+<span class='no'>res1a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>))
+<span class='no'>res2a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>))
 <span class='fu'>abs</span>((<span class='no'>res1a</span> - <span class='no'>res2</span>)) <span class='co'># 3.287939e-09</span></div><div class='output co'>#&gt; [1] 3.287939e-09</div><div class='input'><span class='fu'>abs</span>((<span class='no'>res2a</span> - <span class='no'>res2</span>)) <span class='co'># 5.331195e-11, intercept/slope better numerically</span></div><div class='output co'>#&gt; [1] 5.331195e-11</div><div class='input'>
 <span class='co'>## as above, but increase the precision, this is probably excessive</span>
-<span class='no'>res1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
+<span class='no'>res1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
                    <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>), <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.75</span>)
-<span class='no'>res2b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
+<span class='no'>res2b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
                    <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>muA</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2A</span>), <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.75</span>)
 <span class='fu'>abs</span>((<span class='no'>res1b</span> - <span class='no'>res2</span>)) <span class='co'># 6.938894e-18 # both within machine precision</span></div><div class='output co'>#&gt; [1] 6.938894e-18</div><div class='input'><span class='fu'>abs</span>((<span class='no'>res2b</span> - <span class='no'>res2</span>)) <span class='co'># 1.040834e-16</span></div><div class='output co'>#&gt; [1] 1.040834e-16</div><div class='input'>
 <span class='co'>## relative precision is also good</span>
 <span class='fu'>abs</span>((<span class='no'>res1b</span> - <span class='no'>res2</span>)/<span class='no'>res2</span>) <span class='co'># 2.6119e-16 # both within machine precision</span></div><div class='output co'>#&gt; [1] 2.6119e-16</div><div class='input'><span class='fu'>abs</span>((<span class='no'>res2b</span> - <span class='no'>res2</span>)/<span class='no'>res2</span>) <span class='co'># 3.91785e-15</span></div><div class='output co'>#&gt; [1] 3.91785e-15</div><div class='input'>
 
 <span class='co'>## an extended example with vector args, if "PerformanceAnalytics" is present</span>
-<span class='kw'>if</span>(<span class='fu'>require</span>(<span class='st'>"PerformanceAnalytics"</span>)){
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"PerformanceAnalytics"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) <span class='fu'>withAutoprint</span>({
     <span class='fu'>data</span>(<span class='no'>edhec</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"PerformanceAnalytics"</span>)
     <span class='no'>mu</span> <span class='kw'>&lt;-</span> <span class='fu'>apply</span>(<span class='no'>edhec</span>, <span class='fl'>2</span>, <span class='no'>mean</span>)
     <span class='no'>sigma2</span> <span class='kw'>&lt;-</span> <span class='fu'>apply</span>(<span class='no'>edhec</span>, <span class='fl'>2</span>, <span class='no'>var</span>)
     <span class='no'>musigma2</span> <span class='kw'>&lt;-</span> <span class='fu'>cbind</span>(<span class='no'>mu</span>, <span class='no'>sigma2</span>)
 
     <span class='co'>## compute in 2 ways with cvar::VaR</span>
-    <span class='no'>vAz1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2</span>))
-    <span class='no'>vAz2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2</span>))
+    <span class='no'>vAz1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2</span>))
+    <span class='no'>vAz2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>qnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2</span>))
 
-    <span class='no'>vAz1a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
+    <span class='no'>vAz1a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
                        <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2</span>))
-    <span class='no'>vAz2a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
+    <span class='no'>vAz2a</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
                        <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2</span>))
 
-    <span class='no'>vAz1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
+    <span class='no'>vAz1b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
                    <span class='kw'>mean</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2</span>),
                    <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.75</span>)
-    <span class='no'>vAz2b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
+    <span class='no'>vAz2b</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>cvar</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cvar/topics/VaR'>VaR</a></span>(<span class='no'>pnorm</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"cdf"</span>,
                    <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='no'>mu</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fu'>sqrt</span>(<span class='no'>sigma2</span>),
                    <span class='kw'>tol</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.eps</span>^<span class='fl'>0.75</span>)
 
@@ -231,18 +245,33 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
 
     <span class='fu'>max</span>(<span class='fu'>abs</span>((<span class='no'>vPA</span> - <span class='no'>vAz1b</span>))) <span class='co'># 4.374869e-13</span>
     <span class='fu'>max</span>(<span class='fu'>abs</span>((<span class='no'>vPA</span> - <span class='no'>vAz2b</span>))) <span class='co'># 3.330669e-16</span>
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: PerformanceAnalytics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: xts</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: zoo</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘zoo’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    as.Date, as.Date.numeric</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Package PerformanceAnalytics (1.5.2) loaded.</span>
-#&gt; <span class='message'>Copyright (c) 2004-2018 Peter Carl and Brian G. Peterson, GPL-2 | GPL-3</span>
-#&gt; <span class='message'>https://github.com/braverock/PerformanceAnalytics</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘PerformanceAnalytics’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:cvar’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    CVaR, ES, VaR</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:graphics’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    legend</span></div><div class='output co'>#&gt; [1] 3.330669e-16</div><div class='input'>
+})</div><div class='output co'>#&gt; &gt; data(edhec, package = "PerformanceAnalytics")
+#&gt; &gt; mu &lt;- apply(edhec, 2, mean)
+#&gt; &gt; sigma2 &lt;- apply(edhec, 2, var)
+#&gt; &gt; musigma2 &lt;- cbind(mu, sigma2)
+#&gt; &gt; vAz1 &lt;- cvar::VaR(qnorm, x = 0.05, mean = mu, sd = sqrt(sigma2))
+#&gt; &gt; vAz2 &lt;- cvar::VaR(qnorm, x = 0.05, intercept = mu, slope = sqrt(sigma2))
+#&gt; &gt; vAz1a &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = mu, sd = sqrt(sigma2))
+#&gt; &gt; vAz2a &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = mu, 
+#&gt; +     slope = sqrt(sigma2))
+#&gt; &gt; vAz1b &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = mu, sd = sqrt(sigma2), 
+#&gt; +     tol = .Machine$double.eps^0.75)
+#&gt; &gt; vAz2b &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = mu, 
+#&gt; +     slope = sqrt(sigma2), tol = .Machine$double.eps^0.75)
+#&gt; &gt; vPA &lt;- apply(musigma2, 1, function(x) PerformanceAnalytics::VaR(p = 0.95, 
+#&gt; +     method = "gaussian", invert = FALSE, mu = x[1], sigma = x[2], weights = 1))
+#&gt; &gt; max(abs((vPA - vAz1)))
+#&gt; [1] 5.551115e-17
+#&gt; &gt; max(abs((vPA - vAz2)))
+#&gt; [1] 5.551115e-17
+#&gt; &gt; max(abs((vPA - vAz1a)))
+#&gt; [1] 3.287941e-09
+#&gt; &gt; max(abs((vPA - vAz2a)))
+#&gt; [1] 1.465251e-10
+#&gt; &gt; max(abs((vPA - vAz1b)))
+#&gt; [1] 4.374869e-13
+#&gt; &gt; max(abs((vPA - vAz2b)))
+#&gt; [1] 3.330669e-16</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -250,6 +279,8 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#note">Note</a></li>
       
       <li><a href="#examples">Examples</a></li>

@@ -21,22 +21,25 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
 <meta property="og:title" content="Compute Conditional Value-at-Risk and Value-at-Risk — cvar-package" />
 
-<meta property="og:description" content="Compute expected shortfall (ES) and Value at Risk
-    (VaR) from a quantile function, distribution function, random
-    number generator or probability density function.  ES is also
-    known as Conditional Value at Risk (CVaR). Virtually any
-    continuous distribution can be specified.  The functions are
-    vectorised over the arguments." />
+<meta property="og:description" content="Compute expected shortfall (ES) and Value at Risk (VaR)
+    from a quantile function, distribution function, random number
+    generator or probability density function.  ES is also known as
+    Conditional Value at Risk (CVaR). Virtually any continuous
+    distribution can be specified.  The functions are vectorised over
+    the arguments. Some support for GARCH models is provided, as well." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -63,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cvar</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -109,12 +112,12 @@
 
     <div class="ref-description">
     
-    <p>Compute expected shortfall (ES) and Value at Risk
-    (VaR) from a quantile function, distribution function, random
-    number generator or probability density function.  ES is also
-    known as Conditional Value at Risk (CVaR). Virtually any
-    continuous distribution can be specified.  The functions are
-    vectorised over the arguments.</p>
+    <p>Compute expected shortfall (ES) and Value at Risk (VaR)
+    from a quantile function, distribution function, random number
+    generator or probability density function.  ES is also known as
+    Conditional Value at Risk (CVaR). Virtually any continuous
+    distribution can be specified.  The functions are vectorised over
+    the arguments. Some support for GARCH models is provided, as well.</p>
     
     </div>
 
@@ -135,7 +138,7 @@
  provide packages
     covering comprehensively various aspects of risk measurement,
     including some functions for expected shortfall.</p>
-<p>Package <span class="pkg">cvar</span> is a small package with, essentially two
+<p>Package <span class="pkg">cvar</span> is a small package with, essentially, two main
     functions --- <code>ES</code> for computing the expected shortfall
     and <code>VaR</code> for Value at Risk.  The user specifies the
     distribution by supplying one of the functions that define a
@@ -153,7 +156,7 @@
     despite the possibility for name clashes with same named
     functions in other packages, rather than invent possibly
     difficult to remember alternatives. Just call the functions as
-    <code><a href='ES.html'>cvar::ES</a></code> and <code>cvar::VaR</code> if necessary.</p>
+    <code><a href='ES.html'>cvar::ES</a></code> and <code><a href='VaR.html'>cvar::VaR</a></code> if necessary.</p>
 <p>Locations-scale transformations can be specified separately
     from the other distribution parameters. This is useful when
     such parameters are not provided directly by the distribution
@@ -166,8 +169,11 @@
     distribution are convenience functions. <code>VaR</code> exported by
     <span class="pkg">cvar</span> could be attractive in certain workflows because of
     its vectorised distribution parameters, the location-scale
-    transformation and the possibility to compute it from cdf's
+    transformation, and the possibility to compute it from cdf's
     when quantile functions are not available.</p>
+<p>Some support for GARCH models is provided, as well. It is
+    currently under development, see <code><a href='predict.garch1c1.html'>predict.garch1c1</a></code>
+    for current functionality.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -181,12 +187,19 @@
 R package version 1.0, <a href='https://CRAN.R-project.org/package=VaRES'>https://CRAN.R-project.org/package=VaRES</a>.
     Brian
 G. Peterson, Peter Carl (2018).
-<em>PerformanceAnalytics: \(P\) Econometric Tools for Performance and Risk Analysis</em>.
+<em>PerformanceAnalytics: Econometric Tools for Performance and Risk Analysis</em>.
 R package version 1.5.2, <a href='https://CRAN.R-project.org/package=PerformanceAnalytics'>https://CRAN.R-project.org/package=PerformanceAnalytics</a>.</p>
+<p>---</p>
+<p>This is for pkgdown test. The following two phrases should be in separate paragraphs:</p>
+<p>First phrase.
+    Second phrase.</p>
+<p>---</p>
+<p>First phrase.
+    Second phrase.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>## see the examples in \code{\link{ES}} and \code{\link{VaR}}
+    <pre class="examples"><div class='input'>## see the examples for ES(), VaR(), predict.garch1c1()
 
 </div></pre>
   </div>

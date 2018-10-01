@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -31,41 +33,42 @@
 <meta property="og:title" content="Compute expected shortfall (ES) of distributions — ES" />
 
 <meta property="og:description" content="ES computes the expected shortfall for distributions specified by the
-    arguments. dist is typically a function (or the name of one). What it computes
-    is determined by dist.type. The default setting of dist.type is
-    "qf" (the quantile function). Other possible settings of dist.type
-    include "cdf" and "pdf".  Additional arguments for dist can be
-    given with the "..." arguments.
+    arguments. dist is typically a function (or the name of one). What dist
+    computes is determined by dist.type, whose default setting is &quot;qf&quot; (the
+    quantile function). Other possible settings of dist.type include &quot;cdf&quot;
+    and &quot;pdf&quot;.  Additional arguments for dist can be given with the
+    &quot;...&quot; arguments.
 Except for the exceptions discussed below, a function computing VaR for the specified
     distribution is constructed and the expected shortfall is computed by numerically
-    integrating it. The numerical integration can be fine tuned with argument
+    integrating it. The numerical integration can be fine-tuned with argument
     control, which should be a named list, see integrate for the
     available options.
-If dist.type is "pdf", VaR is not computed, Instead, the partial
-    expectation of the lower tail is computed by numerical integration of \(x*pdf(x)\).
-    Currently the quantile function is required, via argument qf, to compute the
-    upper limit of the integral. So, this case is mainly for testing and comparison
-    purposes." />
+If dist.type is &quot;pdf&quot;, VaR is not computed, Instead, the partial
+    expectation of the lower tail is computed by numerical integration of x *
+    pdf(x).  Currently the quantile function is required anyway, via argument qf,
+    to compute the upper limit of the integral. So, this case is mainly for testing and
+    comparison purposes." />
 
 <meta property="og:description" content="A bunch of expected shortfalls is computed if argument x or any of the
-    arguments in "..." are of length greater than one. They are recycled to equal
+    arguments in &quot;...&quot; are of length greater than one. They are recycled to equal
     length, if necessary, using the normal R recycling rules.
 intercept and slope can be used to compute the expected shortfall for
     the location-scale transformation Y = intercept + slope * X, where the
-    distribution of $X$ is as specified by the other parameters. The expected shortfall of
-    X is calculated and then transformed to that of Y. Note that X
-    doesn't need to have a standardised distribution, although it will typically will.
+    distribution of X is as specified by the other parameters and Y is the
+    variable of interest. The expected shortfall of X is calculated and then
+    transformed to that of Y. Note that the distribution of X doesn't need
+    to be standardised, although it typically will.
 The intercept and the slope can be vectors. Using them may be
     particularly useful for cheap calculations in, for example, forecasting, where the
     predictive distributions are often from the same family, but with different location
     and scale parameters. Conceptually, the described treatment of intercept and
-    slope is equivalent to recycling them with along with the other arguments, but
-    more efficient.
-The names, intercept and slope, for the location and scale parameter,
-    respectively, were chosen for their expressiveness and to minimise the possibility for
-    a clash with parameters of dist (e.g., the Gamma distribution has parameter
-    scale)." />
+    slope is equivalent to recycling them along with the other arguments, but more
+    efficiently.
+The names, intercept and slope, for the location and scale parameters
+    were chosen for their expressiveness and to minimise the possibility for a clash with
+    parameters of dist (e.g., the Gamma distribution has parameter scale)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -92,7 +95,7 @@ The names, intercept and slope, for the location and scale parameter,
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cvar</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -139,45 +142,45 @@ The names, intercept and slope, for the location and scale parameter,
     <div class="ref-description">
     
     <p><code>ES</code> computes the expected shortfall for distributions specified by the
-    arguments. <code>dist</code> is typically a function (or the name of one). What it computes
-    is determined by <code>dist.type</code>. The default setting of <code>dist.type</code> is
-    <code>"qf"</code> (the quantile function). Other possible settings of <code>dist.type</code>
-    include <code>"cdf"</code> and <code>"pdf"</code>.  Additional arguments for <code>dist</code> can be
-    given with the <code>"..."</code> arguments.</p>
+    arguments. <code>dist</code> is typically a function (or the name of one). What <code>dist</code>
+    computes is determined by <code>dist.type</code>, whose default setting is <code>"qf"</code> (the
+    quantile function). Other possible settings of <code>dist.type</code> include <code>"cdf"</code>
+    and <code>"pdf"</code>.  Additional arguments for <code>dist</code> can be given with the
+    <code>"..."</code> arguments.</p>
 <p>Except for the exceptions discussed below, a function computing VaR for the specified
     distribution is constructed and the expected shortfall is computed by numerically
-    integrating it. The numerical integration can be fine tuned with argument
+    integrating it. The numerical integration can be fine-tuned with argument
     <code>control</code>, which should be a named list, see <code>integrate</code> for the
     available options.</p>
 <p>If <code>dist.type</code> is <code>"pdf"</code>, VaR is not computed, Instead, the partial
-    expectation of the lower tail is computed by numerical integration of \(x*pdf(x)\).
-    Currently the quantile function is required, via argument <code>qf</code>, to compute the
-    upper limit of the integral. So, this case is mainly for testing and comparison
-    purposes.</p>
+    expectation of the lower tail is computed by numerical integration of <code>x *
+    pdf(x)</code>.  Currently the quantile function is required anyway, via argument <code>qf</code>,
+    to compute the upper limit of the integral. So, this case is mainly for testing and
+    comparison purposes.</p>
 
     <p>A bunch of expected shortfalls is computed if argument <code>x</code> or any of the
     arguments in <code>"..."</code> are of length greater than one. They are recycled to equal
     length, if necessary, using the normal <span style="R">R</span> recycling rules.</p>
 <p><code>intercept</code> and <code>slope</code> can be used to compute the expected shortfall for
     the location-scale transformation <code>Y = intercept + slope * X</code>, where the
-    distribution of $X$ is as specified by the other parameters. The expected shortfall of
-    <code>X</code> is calculated and then transformed to that of <code>Y</code>. Note that <code>X</code>
-    doesn't need to have a standardised distribution, although it will typically will.</p>
+    distribution of <code>X</code> is as specified by the other parameters and <code>Y</code> is the
+    variable of interest. The expected shortfall of <code>X</code> is calculated and then
+    transformed to that of <code>Y</code>. Note that the distribution of <code>X</code> doesn't need
+    to be standardised, although it typically will.</p>
 <p>The <code>intercept</code> and the <code>slope</code> can be vectors. Using them may be
     particularly useful for cheap calculations in, for example, forecasting, where the
     predictive distributions are often from the same family, but with different location
     and scale parameters. Conceptually, the described treatment of <code>intercept</code> and
-    <code>slope</code> is equivalent to recycling them with along with the other arguments, but
-    more efficient.</p>
-<p>The names, <code>intercept</code> and <code>slope</code>, for the location and scale parameter,
-    respectively, were chosen for their expressiveness and to minimise the possibility for
-    a clash with parameters of <code>dist</code> (e.g., the Gamma distribution has parameter
-    <code>scale</code>).</p>
+    <code>slope</code> is equivalent to recycling them along with the other arguments, but more
+    efficiently.</p>
+<p>The names, <code>intercept</code> and <code>slope</code>, for the location and scale parameters
+    were chosen for their expressiveness and to minimise the possibility for a clash with
+    parameters of <code>dist</code> (e.g., the Gamma distribution has parameter <code>scale</code>).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ES</span>(<span class='no'>dist</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"qf"</span>, <span class='no'>qf</span>, <span class='no'>...</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'>list</span>())</pre>
+    <pre class="usage"><span class='fu'>ES</span>(<span class='no'>dist</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>dist.type</span> <span class='kw'>=</span> <span class='st'>"qf"</span>, <span class='no'>qf</span>, <span class='no'>...</span>, <span class='kw'>intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>slope</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'>list</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • cvar</title>
+<title>Simulate ARCH(1,1) time series — sim_garch1c1 • cvar</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Simulate ARCH(1,1) time series — sim_garch1c1" />
+
+<meta property="og:description" content="Simulate ARCH(1,1) time series." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -95,72 +98,81 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Simulate ARCH(1,1) time series</h1>
+    <small class="dont-index">Source: <a href='https://github.com/GeoBosh/cvar/blob/master/R/garch.R'><code>R/garch.R</code></a></small>
+    <div class="hidden name"><code>sim_garch1c1.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Simulate ARCH(1,1) time series.</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="cvar-package.html">cvar-package</a></code> </p>
-        </td>
-        <td><p>Compute Conditional Value-at-Risk and Value-at-Risk</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ES.html">ES()</a></code> </p>
-        </td>
-        <td><p>Compute expected shortfall (ES) of distributions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="GarchModel.html">GarchModel()</a></code> </p>
-        </td>
-        <td><p>Specify a GARCH model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict.garch1c1.html">predict(<i>&lt;garch1c1&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Prediction for GARCH(1,1) time series</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sim_garch1c1.html">sim_garch1c1()</a></code> </p>
-        </td>
-        <td><p>Simulate ARCH(1,1) time series</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="VaR.html">VaR()</a></code> <code><a href="VaR.html">VaR_qf()</a></code> <code><a href="VaR.html">VaR_cdf()</a></code> </p>
-        </td>
-        <td><p>Compute Value-at-Risk (VaR) of distributions</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>sim_garch1c1</span>(<span class='no'>model</span>, <span class='no'>n</span>, <span class='kw'>n.start</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>model</th>
+      <td><p>a GARCH(1,1) model, an object obtained from <code>GarchModel</code>.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>the length of the generated time series.</p></td>
+    </tr>
+    <tr>
+      <th>n.start</th>
+      <td><p>number of warm-up values, which are then dropped.</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>an integer to use for setting the random number generator.</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a list with components:</p>
+<dt>eps</dt><dd><p>the time series,</p></dd>
+<dt>h</dt><dd><p>the (squared) volatilities,</p></dd>
+<dt>eta</dt><dd><p>the standardised innovations,</p></dd>
+<dt>model</dt><dd><p>the GARCH(1,1) model,</p></dd>
+<dt>.sim</dt><dd><p>a list containing the parameters of the simulation,</p></dd>
+<dt>call</dt><dd><p>the call.</p></dd>
+
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The simulated time series is in component <code>eps</code> of the returned value.
+For exploration of algorithms and eestimation procedures, the volatilities
+and the standardised innovations are also returned.</p>
+<p>The random seed at the start of the simulations is saved in the returned
+object.  A speficific seed can be requested with argument <code>seed</code>. In
+that case the simulations are done with the specified seed and the old state
+of the random number generator is restored before the function returns.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>This function is under development and may be changed.</p>
+    
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
+          </ul>
+
   </div>
 </div>
 
