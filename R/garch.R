@@ -169,6 +169,10 @@ sim_garch1c1 <- function(model, n, n.start = 0, seed = NULL){
     N <- n + n.start
     h <- eps <- numeric(N)
 
+    RNGstate <- .RNGstate(seed)
+    if(!is.null(RNGstate$oldRNGstate)) # or !is.null(seed)
+        on.exit(assign(".Random.seed", RNGstate$oldRNGstate, envir = .GlobalEnv))
+
     rgen$n <- N # or: rgen[[2]] <- N
     eta <- eval(rgen)
 

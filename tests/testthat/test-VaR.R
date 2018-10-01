@@ -24,8 +24,8 @@ abs((res2a - res2)) # 5.331195e-11, intercept/slope better numerically
 res1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
 res2b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
 
-expect_less_than( abs((res1b - res2)), 1e-12) # 6.938894e-18 # both within machine precision
-expect_less_than( abs((res2b - res2)), 1e-12) # 1.040834e-16
+expect_lt( abs((res1b - res2)), 1e-12) # 6.938894e-18 # both within machine precision
+expect_lt( abs((res2b - res2)), 1e-12) # 1.040834e-16
 
 ## relative precision is also good
 abs((res1b - res2)/res2) # 2.6119e-16 # both within machine precision
@@ -73,30 +73,29 @@ if(require("PerformanceAnalytics")){
 })
 
 test_that("ES works ok", {
-ES(qnorm)
+
+expect_equal(ES(qnorm, dist.type = "qf"),
+             ES(qnorm) )
 
 ## Gaussian
-ES(qnorm, dist.type = "qf")
-ES(pnorm, dist.type = "cdf")
+expect_equal(ES(qnorm, dist.type = "qf"),
+             ES(pnorm, dist.type = "cdf") )
+
 
 ## t-dist
-ES(qt, dist.type = "qf", df = 4)
-ES(pt, dist.type = "cdf", df = 4)
+expect_equal(ES(qt, dist.type = "qf", df = 4),
+             ES(pt, dist.type = "cdf", df = 4) )
 
-ES(pnorm, x= 0.95, dist.type = "cdf")
-ES(qnorm, x= 0.95, dist.type = "qf")
+expect_equal(ES(pnorm, x = 0.95, dist.type = "cdf"),
+             ES(qnorm, x = 0.95, dist.type = "qf") )
 ## - VaRES::esnormal(0.95, 0, 1)
 ## - PerformanceAnalytics::ETL(p=0.05, method = "gaussian", mu = 0,
 ##                             sigma = 1, weights = 1)             # same
 
-cvar::ES(pnorm, dist.type = "cdf")
-cvar::ES(qnorm, dist.type = "qf")
-cvar::ES(pnorm, x= 0.05, dist.type = "cdf")
-cvar::ES(qnorm, x= 0.05, dist.type = "qf")
 
 ## this uses "pdf"
-cvar::ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm)
-
+expect_equal(ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm),
+             ES(pnorm, x = 0.05, dist.type = "cdf") )
 
 })
 
