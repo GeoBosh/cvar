@@ -105,9 +105,9 @@ VaR_qf <- function(dist, x = 0.05, ...,
     dist <- match.fun(dist)
     ## assumes "..." are scalar
     res <-  if(length(x) > 1)
-                - dist(x, ...)
-            else
                 - sapply(x, dist, ...)
+            else
+                - dist(x, ...)
 
     - intercept + slope * res
 }
@@ -120,9 +120,9 @@ VaR_cdf <- function(dist, x = 0.05, ...,
     dist <- match.fun(dist)
     ## assumes "..." are scalar
     res <-  if(length(x) > 1)
-                - cdf2quantile(x, dist, tol = tol, ...) # TODO: interval?
-            else
                 - sapply(x, cdf2quantile, ..., MoreArgs = list(cdf = dist, tol = tol))
+            else
+                - cdf2quantile(x, dist, tol = tol, ...) # TODO: interval?
 
     - intercept + slope * res
 }

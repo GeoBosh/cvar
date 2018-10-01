@@ -22,4 +22,18 @@ test_that("garch1c1 related functions work ok", {
 
     expect_equal_to_reference(a, "a.RDS")
     expect_equal_to_reference(a_pred, "a_pred.RDS")
+
+
+    expect_equal(.rgen(NULL), .dist$norm$r)
+    ## for now
+    expect_error(.rgen("unknowndist"))
+    expect_error(.rgen(list("unknowndist")))
+    expect_error(.rgen(5))
+
+    expect_equal(.get_cond_dist(NULL, "p"), .dist$norm[["p"]])
+    ## for now
+    expect_error(.get_cond_dist("unknowndist"))
+    expect_error(.get_cond_dist(list("unknowndist")))
+    expect_error(.get_cond_dist(5))
+
 })

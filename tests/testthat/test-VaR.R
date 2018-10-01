@@ -20,6 +20,15 @@ res2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = muA, slope = 
 abs((res1a - res2)) # 3.287939e-09
 abs((res2a - res2)) # 5.331195e-11, intercept/slope better numerically
 
+expect_equal(res1, VaR_qf(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A)))
+expect_equal(res2a, VaR_cdf(pnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A)))
+
+set.seed(1236)
+a.num <- rnorm(100)
+VaR(a.num)
+ES(a.num)
+
+
 ## as above, but increase the precision, this is probably excessive
 res1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
 res2b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A), tol = .Machine$double.eps^0.75)

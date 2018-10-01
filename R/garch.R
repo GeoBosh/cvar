@@ -77,7 +77,7 @@ GarchModel <- function(model = list(), ..., model.class = NULL){
         }
     }
 
-    stop("this case is not implemented yet.")
+    stop("invalid distribution specification.")
 }
 
 .get_cond_dist <- function(dist, what){

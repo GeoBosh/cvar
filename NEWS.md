@@ -8,6 +8,8 @@
 * now the first argument of `VaR()` and `ES()` can be a numeric vector. This is
   useful, e.g., for computing VaR by simulation.
 
+* bugfix:  in `VaR_cdf()` and `VaR_qf()`,  the code for the `if/else` clauses
+  had been wrongly swappped. 
 
 # cvar 0.2-0 (CRAN)
 
