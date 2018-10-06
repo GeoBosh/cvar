@@ -2,7 +2,7 @@
 % Please edit documentation in R/garch.R
 \name{sim_garch1c1}
 \alias{sim_garch1c1}
-\title{Simulate ARCH(1,1) time series}
+\title{Simulate GARCH(1,1) time series}
 \usage{
 sim_garch1c1(model, n, n.start = 0, seed = NULL)
 }
@@ -25,7 +25,7 @@ a list with components:
 \item{call}{the call.}
 }
 \description{
-Simulate ARCH(1,1) time series.
+Simulate GARCH(1,1) time series.
 }
 \details{
 The simulated time series is in component \code{eps} of the returned value.

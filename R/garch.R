@@ -107,9 +107,9 @@ GarchModel <- function(model = list(), ..., model.class = NULL){
     stop("this case is not implemented yet.")
 }
 
-#' Simulate ARCH(1,1) time series
+#' Simulate GARCH(1,1) time series
 #'
-#' Simulate ARCH(1,1) time series.
+#' Simulate GARCH(1,1) time series.
 #'
 #' The simulated time series is in component \code{eps} of the returned value.
 #' For exploration of algorithms and eestimation procedures, the volatilities

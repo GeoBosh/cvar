@@ -1,4 +1,4 @@
-#' Compute Value-at-Risk (VaR) of distributions
+#' Compute Value-at-Risk (VaR)
 #'
 #' @description \code{Var} computes the Value-at-Risk of the distribution specified by the
 #'     arguments. The meaning of the parameters is the same as in \code{\link{ES}}, including

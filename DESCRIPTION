@@ -1,7 +1,7 @@
 Package: cvar
 Type: Package
 Title: Compute Expected Shortfall and Value at Risk for Continuous Distributions
-Version: 0.3-0
+Version: 0.3-1
 Date: 2018-10-06
 Authors@R: person(given = c("Georgi", "N."), family = "Boshnakov",
                   role = c("aut", "cre"), 

@@ -1,3 +1,8 @@
+# cvar 0.3-1
+
+* correct a typo in the title of `sim_garch1c1()`'s help page (ARCH => GARCH).
+
+
 # cvar 0.3-0 (CRAN)
 
 # cvar 0.2-1

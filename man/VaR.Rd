@@ -6,7 +6,7 @@
 \alias{VaR_cdf}
 \alias{VaR.default}
 \alias{VaR.numeric}
-\title{Compute Value-at-Risk (VaR) of distributions}
+\title{Compute Value-at-Risk (VaR)}
 \usage{
 VaR(dist, x = 0.05, dist.type = "qf", ..., intercept = 0,
   slope = 1, tol = .Machine$double.eps^0.5)
