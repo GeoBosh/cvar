@@ -289,6 +289,17 @@ sim_garch1c1 <- function(model, n, n.start = 0, seed = NULL){
 #'       VaR = apply(a.pred$dist_sim$eps, 1, function(x) VaR(x, c(0.05))),
 #'       ES = apply(a.pred$dist_sim$eps, 1, function(x) ES(x, c(0.05))) )
 #'
+#' ## fit a GARCH(1,1) model to exchange rate data and predict
+#' gmo1 <- fGarch::garchFit(formula = ~garch(1, 1), data = fGarch::dem2gbp,
+#'   include.mean = FALSE, cond.dist = "norm", trace = FALSE)
+#' mocoef <- gmo1@fit$par
+#' mofitted <- GarchModel(omega = mocoef["omega"], alpha = mocoef["alpha1"],
+#'   beta = mocoef["beta1"])
+#' gmo1.pred <- predict(mofitted, n.ahead = 5, Nsim = 1000, eps = gmo1@data,
+#'   sigmasq = gmo1@h.t, seed = 1234)
+#' gmo1.pred$pi_plugin
+#' gmo1.pred$pi_sim
+#'
 #' @note This function is under development and may be changed.
 #'
 #' @export
