@@ -5,6 +5,10 @@
 #' Argument \code{model} can be the result of a previous call to \code{GarchModel}.
 #' Arguments in \code{"..."} overwrite current components of \code{model}.
 #'
+#' \code{GarchModel} guarantees that code using it will continue to work
+#' transparently for the user even if the internal represedtation of GARCH
+#' models in this package is changed or additional functionality is added.
+#'
 #' @param model a GARCH model or a list.
 #' @param ... named argument specifying the GARCH model.
 #' @param model.class a class for the result. By default \code{GarchModel()}
@@ -16,6 +20,15 @@
 #' mo1a <- GarchModel(omega = 1, alpha = 0.3, beta = 0.5)
 #' mo1b <- GarchModel(omega = 1, alpha = 0.3, beta = 0.5, cond.dist = "norm")
 #'
+#' ## equivalently, the parameters can be given as a list
+#' p1 <- list(omega = 1, alpha = 0.3, beta = 0.5)
+#' mo1a_alt <- GarchModel(p1)
+#' mo1b_alt <- GarchModel(p1, cond.dist = "norm")
+#' stopifnot(identical(mo1a, mo1a_alt), identical(mo1b, mo1b_alt))
+#'
+#' ## additional arguments modify values already in 'model'
+#' mo_alt <- GarchModel(p1, beta = 0.4)
+#'
 #' ## set also initial values
 #' mo2 <- GarchModel(omega = 1, alpha = 0.3, beta = 0.5, esp0 = - 1.5, h0 = 4.96)
 #'
@@ -26,13 +39,20 @@
 GarchModel <- function(model = list(), ..., model.class = NULL){
     ## TODO: check the correctness of the parameters
     ## alpha, beta, cond.dist, 2nd order stationary, initial vaalue for eps_t^2, h_t
-    dots <- list(...)
-    if(length(dots) > 0)
-        model[names(dots)] <- dots
 
-    class(model) <- "GarchModel0"
-    if(is.null(model.class) && length(model$alpha) == 1 && length(model$beta) == 1)
-        class(model) <- "garch1c1"
+    ## 2019-03-15 TODO: handle fGARCH models
+    ## if(inherits(model, "fGARCH")){
+    ##
+    ## }else{
+
+        dots <- list(...)
+        if(length(dots) > 0)
+            model[names(dots)] <- dots
+
+        class(model) <- "GarchModel0"
+        if(is.null(model.class) && length(model$alpha) == 1 && length(model$beta) == 1)
+            class(model) <- "garch1c1"                     # GARCH(1,1), 'c' stands for 'comma'
+    ## }
 
     model
 }
@@ -202,6 +222,9 @@ sim_garch1c1 <- function(model, n, n.start = 0, seed = NULL){
     if (is.null(seed))
         list(RNGstate = oldRNGstate)
     else{
+        ## This doesn't resolve the problem
+        ## suppressWarnings(RNGversion("3.5.0"))  # 2019-03-13 temporary, RNG changed in R-devel.
+        ##                                        #            see email from Kurt Hornik in Org/
         set.seed(seed)
         RNGstate <- structure(seed, kind = as.list(RNGkind()))
         ## on.exit(assign(".Random.seed", oldRNGstate, envir = .GlobalEnv))

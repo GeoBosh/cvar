@@ -23,11 +23,24 @@ Specify a GARCH model.
 \details{
 Argument \code{model} can be the result of a previous call to \code{GarchModel}.
 Arguments in \code{"..."} overwrite current components of \code{model}.
+
+\code{GarchModel} guarantees that code using it will continue to work
+transparently for the user even if the internal represedtation of GARCH
+models in this package is changed or additional functionality is added.
 }
 \examples{
 ## GARCH(1,1) with Gaussian innovations
 mo1a <- GarchModel(omega = 1, alpha = 0.3, beta = 0.5)
 mo1b <- GarchModel(omega = 1, alpha = 0.3, beta = 0.5, cond.dist = "norm")
+
+## equivalently, the parameters can be given as a list
+p1 <- list(omega = 1, alpha = 0.3, beta = 0.5)
+mo1a_alt <- GarchModel(p1)
+mo1b_alt <- GarchModel(p1, cond.dist = "norm")
+stopifnot(identical(mo1a, mo1a_alt), identical(mo1b, mo1b_alt))
+
+## additional arguments modify values already in 'model'
+mo_alt <- GarchModel(p1, beta = 0.4)
 
 ## set also initial values
 mo2 <- GarchModel(omega = 1, alpha = 0.3, beta = 0.5, esp0 = - 1.5, h0 = 4.96)

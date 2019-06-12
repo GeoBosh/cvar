@@ -1,8 +1,8 @@
 Package: cvar
 Type: Package
 Title: Compute Expected Shortfall and Value at Risk for Continuous Distributions
-Version: 0.3-1
-Date: 2018-10-06
+Version: 0.4-0
+Date: 2019-03-15
 Authors@R: person(given = c("Georgi", "N."), family = "Boshnakov",
                   role = c("aut", "cre"), 
                   email = "georgi.boshnakov@manchester.ac.uk")
@@ -20,5 +20,5 @@ Imports: gbutils, Rdpack (>= 0.8), fGarch
 RdMacros: Rdpack
 License: GPL (>=2)
 Collate: VaR.R cvar-package.R garch.R
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: testthat, PerformanceAnalytics, covr
