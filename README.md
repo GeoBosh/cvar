@@ -22,7 +22,7 @@ and Tasche (2002). Some support for GARCH models is provided, as well.
 
 The [latest stable version](https://cran.r-project.org/package=cvar) is on CRAN. 
 
-    install_packages("cvar")
+    install.packages("cvar")
 
 The vignette shipping with the package gives illustrative examples
 (`vignette("Guide_cvar", package = "cvar")`).
