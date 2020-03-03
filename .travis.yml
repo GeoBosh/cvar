@@ -1,9 +1,24 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
+cache: packages
+latex: true
+
 
 r_github_packages:
   - r-lib/covr
 
 after_success:
   - Rscript -e 'covr::coveralls()'
+
+matrix:
+  include:
+    - os: linux
+      r: release
+    - os: linux
+      r: devel
+    - os: linux
+      dist: trusty
+      env: R_CODECOV=true
+##     - os: osx
+##       osx_image: xcode8.3

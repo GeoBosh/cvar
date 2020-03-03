@@ -1,3 +1,4 @@
+.rsync_exclude
 vignettes/Guide_cvar.bbl
 vignettes/Guide_cvar.blg
 jss.bst
