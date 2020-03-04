@@ -238,7 +238,7 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
 
     <span class='co'>## analogous calc. with PerformanceAnalytics::VaR</span>
     <span class='no'>vPA</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='no'>musigma2</span>, <span class='fl'>1</span>, <span class='kw'>function</span>(<span class='no'>x</span>)
-        <span class='kw pkg'>PerformanceAnalytics</span><span class='kw ns'>::</span><span class='fu'>VaR</span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>.95</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='kw pkg'>PerformanceAnalytics</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/PerformanceAnalytics/man/VaR.html'>VaR</a></span>(<span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>.95</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
                                   <span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>x</span>[<span class='fl'>1</span>], <span class='kw'>sigma</span> <span class='kw'>=</span> <span class='no'>x</span>[<span class='fl'>2</span>], <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fl'>1</span>))
     <span class='co'>## the results are numerically the same</span>
     <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>((<span class='no'>vPA</span> - <span class='no'>vAz1</span>))) <span class='co'># 5.551115e-17</span>
@@ -249,7 +249,36 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
 
     <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>((<span class='no'>vPA</span> - <span class='no'>vAz1b</span>))) <span class='co'># 4.374869e-13</span>
     <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>((<span class='no'>vPA</span> - <span class='no'>vAz2b</span>))) <span class='co'># 3.330669e-16</span>
-})</div></pre>
+})</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'xts':</span>
+#&gt; <span class='message'>  method     from</span>
+#&gt; <span class='message'>  as.zoo.xts zoo </span></div><div class='output co'>#&gt; &gt; data(edhec, package = "PerformanceAnalytics")
+#&gt; &gt; mu &lt;- apply(edhec, 2, mean)
+#&gt; &gt; sigma2 &lt;- apply(edhec, 2, var)
+#&gt; &gt; musigma2 &lt;- cbind(mu, sigma2)
+#&gt; &gt; vAz1 &lt;- cvar::VaR(qnorm, x = 0.05, mean = mu, sd = sqrt(sigma2))
+#&gt; &gt; vAz2 &lt;- cvar::VaR(qnorm, x = 0.05, intercept = mu, slope = sqrt(sigma2))
+#&gt; &gt; vAz1a &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = mu, sd = sqrt(sigma2))
+#&gt; &gt; vAz2a &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = mu, 
+#&gt; +     slope = sqrt(sigma2))
+#&gt; &gt; vAz1b &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = mu, sd = sqrt(sigma2), 
+#&gt; +     tol = .Machine$double.eps^0.75)
+#&gt; &gt; vAz2b &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = mu, 
+#&gt; +     slope = sqrt(sigma2), tol = .Machine$double.eps^0.75)
+#&gt; &gt; vPA &lt;- apply(musigma2, 1, function(x) PerformanceAnalytics::VaR(p = 0.95, 
+#&gt; +     method = "gaussian", invert = FALSE, mu = x[1], sigma = x[2], weights = 1))
+#&gt; &gt; max(abs((vPA - vAz1)))
+#&gt; [1] 4.163336e-17
+#&gt; &gt; max(abs((vPA - vAz2)))
+#&gt; [1] 4.163336e-17
+#&gt; &gt; max(abs((vPA - vAz1a)))
+#&gt; [1] 1.953409e-09
+#&gt; &gt; max(abs((vPA - vAz2a)))
+#&gt; [1] 1.242979e-10
+#&gt; &gt; max(abs((vPA - vAz1b)))
+#&gt; [1] 4.831205e-14
+#&gt; &gt; max(abs((vPA - vAz2b)))
+#&gt; [1] 2.914335e-16</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

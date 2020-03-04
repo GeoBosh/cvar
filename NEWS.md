@@ -1,3 +1,11 @@
+# cvar 0.4-1
+
+* fixed a bug in the tests, in v0.4-0, that was causing faiure of the tests on
+  travis, despite all checks on CRAN passing with OK. `devtools::test()` was
+  failing too, but only on the first run in a session, details in the git
+  commit.
+
+
 # cvar 0.4-0 (CRAN)
 
 # cvar 0.3-1
