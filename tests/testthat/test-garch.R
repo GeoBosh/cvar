@@ -37,6 +37,9 @@ test_that("garch1c1 related functions work ok", {
     expect_equal_to_reference(a, a_saved)
     expect_equal_to_reference(a_pred, a_pred_saved)
 
+    ## as above but without 'seed'
+    sim_garch1c1(a_mo, n = 100, n.start = 100)
+    predict(a_mo, n.ahead = 5, Nsim = 100, eps = a$eps, sigmasq = a$h)
 
     expect_equal(.rgen(NULL), .dist$norm$r)
     ## for now
@@ -44,7 +47,26 @@ test_that("garch1c1 related functions work ok", {
     expect_error(.rgen(list("unknowndist")))
     expect_error(.rgen(5))
 
+    .rgen(list("norm"))
+    .rgen(list("norm", mean = 5, sd = 3))
+    .rgen(list("norm", mean = 5, sd = 3, n = 10))
+
+    .rgen("std")
+    .rgen(list("std", df = 5))
+    .rgen(list("std", df = 5, n = 10))
+
+    .rgen(list("ged"))
+
     expect_equal(.get_cond_dist(NULL, "p"), .dist$norm[["p"]])
+
+    .get_cond_dist("norm", "d")
+    .get_cond_dist("norm", "p")
+    .get_cond_dist("norm", "q")
+    .get_cond_dist("norm", "r")
+
+    .get_cond_dist(list("norm"), "p")
+    .get_cond_dist(list("norm", mean = 4, sd = 2), "p")
+    
     ## for now
     expect_error(.get_cond_dist("unknowndist"))
     expect_error(.get_cond_dist(list("unknowndist")))
