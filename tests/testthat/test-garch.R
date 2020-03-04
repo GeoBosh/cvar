@@ -16,11 +16,14 @@ test_that("GarchModel works ok", {
 })
 
 test_that("garch1c1 related functions work ok", {
+    ## try to deal with the misterious error on TravisCI and devtools::test()
+    ## set.seed(123)
+    
     a_mo <- GarchModel(omega = 0.4, alpha = 0.3, beta = 0.5)
     a <- sim_garch1c1(a_mo, n = 100, n.start = 100, seed = 1234)
     a_pred <- predict(a_mo, n.ahead = 5, Nsim = 100, eps = a$eps, sigmasq = a$h, seed = 1235)
 
-    ## 2019-03-13 deal with change in RNG in R-devel (for 2.6.0), see email from Kurt Hornik in Org/
+    ## 2019-03-13 deal with change in RNG in R-devel (for 3.6.0), see email from Kurt Hornik in Org/
     ##        I couldn't make his suggestion work.
     ## TODO: maybe it would be better to just load 'a' from a saved version.
     if(getRversion() < "3.6.0"){

@@ -190,8 +190,19 @@ sim_garch1c1 <- function(model, n, n.start = 0, seed = NULL){
     h <- eps <- numeric(N)
 
     RNGstate <- .RNGstate(seed)
-    if(!is.null(RNGstate$oldRNGstate)) # or !is.null(seed)
-        on.exit(assign(".Random.seed", RNGstate$oldRNGstate, envir = .GlobalEnv))
+    ## 2020-03-04 was:    if(!is.null(RNGstate$oldRNGstate)) # or !is.null(seed)
+    ##    (see comment at a similar command)
+    if(!is.null(seed))
+        on.exit(
+            if(is.null(RNGstate$RNGstate)){
+                ## TRUE id seed is NULL but also if .Random.seed was not set.
+                "nothing to do"
+            }else if(is.null(RNGstate$oldRNGstate)){
+                rm(".Random.seed", envir = .GlobalEnv)
+            }else{
+                assign(".Random.seed", RNGstate$oldRNGstate, envir = .GlobalEnv)
+            }
+        )
 
     rgen$n <- N # or: rgen[[2]] <- N
     eta <- eval(rgen)
@@ -215,10 +226,16 @@ sim_garch1c1 <- function(model, n, n.start = 0, seed = NULL){
 
 ## modelled after the beginning of `stats:::simulate.lm()`
 .RNGstate <- function(seed = NULL){
-    if(!exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE))
-        runif(1)
+    ## 2020-03-04 - changing the logic below
+    ##
+    ## if(!exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE))
+    ##     runif(1)
 
-    oldRNGstate <- get(".Random.seed", envir = .GlobalEnv)
+    oldRNGstate <- if(exists(".Random.seed", envir = .GlobalEnv))
+                       get(".Random.seed", envir = .GlobalEnv)
+                   else
+                       NULL
+    
     if (is.null(seed))
         list(RNGstate = oldRNGstate)
     else{
@@ -361,8 +378,24 @@ predict.garch1c1 <- function(object, n.ahead = 1, Nsim = 1000, eps, sigmasq, see
     ##
     ## Memorise the state in any case but restore the old state only if 'seed' is not NULL.
     RNGstate <- .RNGstate(seed)
-    if(!is.null(RNGstate$oldRNGstate)) # or !is.null(seed)
-        on.exit(assign(".Random.seed", RNGstate$oldRNGstate, envir = .GlobalEnv))
+    ## 2020-03-04 was:
+    ## 
+    ##    if(!is.null(RNGstate$oldRNGstate)) # or !is.null(seed)
+    ##
+    ## But the check is not equivalent to is.null(seed)!
+    ## Moreover, if RNGstate$oldRNGstate is NULL, .Random.seed should be removed,
+    ##     (so doing it now)
+    if(!is.null(seed))
+        on.exit(
+            if(is.null(RNGstate$RNGstate)){
+                ## TRUE id seed is NULL but also if .Random.seed was not set.
+                "nothing to do"
+            }else if(is.null(RNGstate$oldRNGstate)){
+                rm(".Random.seed", envir = .GlobalEnv)
+            }else{
+                assign(".Random.seed", RNGstate$oldRNGstate, envir = .GlobalEnv)
+            }
+        )
 
 
     h_sim <- eps_sim <- matrix(NA_real_, nrow = n.ahead, ncol = Nsim)

@@ -23,8 +23,7 @@ abs((res2a - res2)) # 5.331195e-11, intercept/slope better numerically
 expect_equal(res1, VaR_qf(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A)))
 expect_equal(res2a, VaR_cdf(pnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A)))
 
-suppressWarnings(RNGversion("3.5.0")) # 2019-03-13 temporary, RNG changed in R-devel.
-                                      #            see email from Kurt Hornik in Org/
+ 
 set.seed(1236)
 a.num <- rnorm(100)
 VaR(a.num)
