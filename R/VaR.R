@@ -134,7 +134,7 @@ VaR.default <- function(dist, x = 0.05, dist.type = "qf", ...,
                         intercept = 0, slope  = 1, tol = .Machine$double.eps^0.5){
     dist <- match.fun(dist)
     ## TODO: add "rand" to dist.type
-    ## TODO: include 'dist' in the condition and mapply()?
+    ## TODO: include 'dist' in the condition and mapply?
             # fu <- switch(dist.type,
             #              qf = function(y) - dist(y, ...),
             #              cdf = function(y) - cdf2quantile(y, dist, tol = tol, ...),
@@ -340,8 +340,13 @@ ES <- function(dist, x = 0.05, dist.type = "qf", qf, ...,
     }else{
         ## TODO: this is lazy
         if(dist.type == "pdf"){
-            res <- mapply(ES, MoreArgs = list(dist = dist, dist.type = dist.type, control = control),
-                          x = x, qf = qf, ...)
+            if(is.list(qf))
+                res <- mapply(ES, MoreArgs = list(dist = dist, dist.type = dist.type, control = control),
+                              x = x, qf = qf, ...)
+            else
+                res <- mapply(ES, MoreArgs = list(dist = dist, dist.type = dist.type, control = control, qf = qf),
+                          x = x, ...)
+                
         }else{
             res <- mapply(ES, MoreArgs = list(dist = dist, dist.type = dist.type, control = control),
                           x = x, ...)

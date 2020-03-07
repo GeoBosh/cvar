@@ -109,6 +109,10 @@ expect_equal(ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm),
 
 ## several in one call
 ES(pnorm, x = c(0.1, 0.05, 0.01), dist.type = "cdf")
-
+ES(dnorm, x = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm)
+ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm)
+ES(dnorm, x = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm)
+ES(dnorm, x = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = list(qnorm, qnorm, qnorm))
+ES(dnorm, x = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = c(qnorm, qnorm, qnorm))
 })
 
