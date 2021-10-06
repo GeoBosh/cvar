@@ -5,9 +5,8 @@
 
 #+BEGIN_EXPORT html
 [![CRANStatusBadge](https://www.r-pkg.org/badges/version/cvar)](https://cran.r-project.org/package=cvar)
-[![test-coverage](https://github.com/GeoBosh/cvar/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/GeoBosh/cvar/actions/workflows/test-coverage.yaml)
-[![R-CMD-check](https://github.com/GeoBosh/cvar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/GeoBosh/cvar/actions/workflows/R-CMD-check.yaml)
-[![pkgdown](https://github.com/GeoBosh/cvar/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/GeoBosh/cvar/actions/workflows/pkgdown.yaml)
+[![R-CMD-check](https://github.com/GeoBosh/cvar/workflows/R-CMD-check/badge.svg)](https://github.com/GeoBosh/cvar/actions)
+[![codecov](https://codecov.io/gh/GeoBosh/cvar/branch/master/graph/badge.svg?token=2SW9HKG71Y)](https://codecov.io/gh/GeoBosh/cvar)
 #+END_EXPORT
 
 
