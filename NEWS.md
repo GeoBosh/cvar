@@ -1,4 +1,6 @@
-# cvar 0.4-1
+# cvar 0.4.1
+
+* changed the JSS reference to use the new-style doi.
 
 * fixed a bug in the tests, in v0.4-0, that was causing faiure of the tests on
   travis, despite all checks on CRAN passing with OK. `devtools::test()` was
