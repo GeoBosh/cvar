@@ -1,0 +1,15 @@
+reference:
+  - title: "Overview of package cvar"
+    contents:
+      - "cvar-package"
+  - title: "ES and VaR for distributions"
+    contents:
+      - ES
+      - VaR
+      - VaR_qf
+      - VaR_cdf 
+  - title: "GARCH models"
+    contents:
+      - GarchModel
+      - sim_garch1c1
+      - predict.garch1c1

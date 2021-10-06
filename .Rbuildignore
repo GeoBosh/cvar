@@ -19,3 +19,4 @@ jss.cls
 ^vignettes/.RData
 ^_pkgdown\.yml$
 ^docs$
+^pkgdown$
