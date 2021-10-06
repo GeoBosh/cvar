@@ -7,6 +7,8 @@
   failing too, but only on the first run in a session, details in the git
   commit.
 
+* set up GHA.
+
 
 # cvar 0.4-0 (CRAN)
 
