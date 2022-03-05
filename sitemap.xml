@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://geobosh.github.io/cvar/404.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/index.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/reference/ES.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/reference/GarchModel.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/reference/VaR.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/reference/cvar-package.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/reference/predict.garch1c1.html</loc>
+  </url>
+  <url>
+    <loc>https://geobosh.github.io/cvar/reference/sim_garch1c1.html</loc>
+  </url>
+</urlset>
