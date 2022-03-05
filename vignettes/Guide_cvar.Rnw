@@ -201,7 +201,7 @@ computed very efficiently using this property.
 \label{sec:var}
 
 Here we compute the VaR associated with a standard normal r.v.
-The three variants are equivalent since 0.5 and \code{"qf"} are default for the last two arguments.
+The three variants are equivalent since 0.05 and \code{"qf"} are default for the last two arguments.
 <<>>=
 cvar::VaR(qnorm, x = 0.05, dist.type = "qf")
 cvar::VaR(qnorm, x = 0.05)
@@ -213,22 +213,27 @@ cvar::VaR(qnorm)
 cvar::VaR(qnorm, x = c(0.01, 0.05))
 @
 
-Let's set some more realistic values for the parameters of the normal distribution:
+Let's set some more realistic values for the parameters of the normal distribution.  Suppose
+that the daily returns on some stock have sample mean $0.006408553$ and sample variance
+$0.0004018977$. Then $N(0.006408553, 0.0004018977)$ can be taken as normal distribution
+fitted to the data.
 <<>>=
 muA <- 0.006408553
 sigma2A <- 0.0004018977
 @
-
-This demonstrates the use of \code{intercept} and \code{slope}. These arguments use the
-linear transformation property discussed in the theoretical section. For the normal
-disribution the parameters are precisely the intercept and the slope:
+This computes VaR using the fitted normal distribution:
 <<>>=
 res1 <- cvar::VaR(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
+@
+
+For the normal disribution we could also use the intercept-slope arguments, since the
+parameters are precisely the intercept and the slope:
+<<>>=
 res2 <- cvar::VaR(qnorm, x = 0.05, intercept = muA, slope = sqrt(sigma2A))
 abs((res2 - res1)) # 0, intercept/slope equivalent to mean/sd
 @
 
-If we compute VaR using the cdf, the intercept slope method has some numerical advantage:
+If we compute VaR using the cdf, the intercept-slope method has some numerical advantage:
 <<>>=
 ## with cdf the precision depends on solving an equation
 res1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
@@ -238,6 +243,7 @@ res2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
 abs((res1a - res2)) # 3.287939e-09
 abs((res2a - res2)) # 5.331195e-11, intercept/slope better numerically
 @
+Of course, it is almost always better to use the quantile function when it is available. 
 
 We can use smaller tollerance to improve the precision
 (the value \verb+.Machine$double.eps^0.75+ = \Sexpr{.Machine$double.eps^0.75} is probably excessive):
@@ -256,6 +262,8 @@ The relative precision is also good.
 abs((res1b - res2)/res2) # 2.6119e-16 # both within machine precision
 abs((res2b - res2)/res2) # 3.91785e-15
 @
+
+
 
 For examples with vectorised distribution parameters we use data from
 \pkg{PerformanceAnalytics}.
@@ -276,7 +284,7 @@ vPA <- apply(musigma2, 1, function(x)
     PerformanceAnalytics::VaR(p = .95, method = "gaussian", invert = FALSE,
                               mu = x[1], sigma = x[2], weights = 1))
 @
-The results below compare to the value, \code{VPA}, obtained here.
+The results below compare to the value, \code{vPA}, obtained here.
 
 The computations below are similar to the previous example but the distribution parameters
 are vectors. The first pair of results are numerically the same:

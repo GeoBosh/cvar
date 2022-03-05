@@ -77,18 +77,12 @@
 #'     for current functionality.
 #'
 #' @references
-#'     \insertAllCited{}
+#'   \insertAllCited{}
 #'
-#' ---
-#'
-#' This is for pkgdown test. The following two phrases should be in separate paragraphs:
-#'
-#' \Sexpr[stage=build,results=rd]{paste0(c("First phrase.", "Second phrase."), collapse = "\n\n")}
-#'
-#' ---
-#'
-#' \Sexpr[stage=build,results=rd]{paste0("First phrase.\n\nSecond phrase.")}
-#'
+#' @seealso
+#'   \code{\link{ES}},
+#'   \code{\link{VaR}}
+#' 
 #' @examples
 #' ## see the examples for ES(), VaR(), predict.garch1c1()
 #'

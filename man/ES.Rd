@@ -4,8 +4,16 @@
 \alias{ES}
 \title{Compute expected shortfall (ES) of distributions}
 \usage{
-ES(dist, x = 0.05, dist.type = "qf", qf, ..., intercept = 0,
-  slope = 1, control = list())
+ES(
+  dist,
+  x = 0.05,
+  dist.type = "qf",
+  qf,
+  ...,
+  intercept = 0,
+  slope = 1,
+  control = list()
+)
 }
 \arguments{
 \item{dist}{specifies the distribution whose ES is computed, usually a function or a name
@@ -21,7 +29,7 @@ Details.}
 
 \item{...}{passed on to \code{dist}.}
 
-\item{intercept, slope}{requests the ES for the linear transformation \code{intercept +
+\item{intercept, slope}{compute ES for the linear transformation \code{intercept +
 slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.}
 
 \item{control}{additional control parameters for the numerical integration routine.}
@@ -30,6 +38,9 @@ slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.
 a numeric vector
 }
 \description{
+Compute the expected shortfall for a distribution.
+}
+\details{
 \code{ES} computes the expected shortfall for distributions specified by the
     arguments. \code{dist} is typically a function (or the name of one). What \code{dist}
     computes is determined by \code{dist.type}, whose default setting is \code{"qf"} (the
@@ -110,4 +121,9 @@ plot(x, y)
 lines(x, yS, col = "blue")
 }
 
+}
+\seealso{
+\code{\link{VaR}} for VaR,
+
+    \code{\link[=predict.garch1c1]{predict}} for examples with fitted models
 }

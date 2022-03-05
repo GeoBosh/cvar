@@ -1,3 +1,4 @@
+^.github$
 .rsync_exclude
 vignettes/Guide_cvar.bbl
 vignettes/Guide_cvar.blg
@@ -7,7 +8,7 @@ jss.cls
 ^docs/
 ^revdep$
 ^README.org
-^Org/
+^Org$
 ^TODO
 [.]emacs[.]desktop.*
 ^TAGS$

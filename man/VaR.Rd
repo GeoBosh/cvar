@@ -8,17 +8,43 @@
 \alias{VaR.numeric}
 \title{Compute Value-at-Risk (VaR)}
 \usage{
-VaR(dist, x = 0.05, dist.type = "qf", ..., intercept = 0,
-  slope = 1, tol = .Machine$double.eps^0.5)
+VaR(
+  dist,
+  x = 0.05,
+  dist.type = "qf",
+  ...,
+  intercept = 0,
+  slope = 1,
+  tol = .Machine$double.eps^0.5
+)
 
-VaR_qf(dist, x = 0.05, ..., intercept = 0, slope = 1,
-  tol = .Machine$double.eps^0.5)
+VaR_qf(
+  dist,
+  x = 0.05,
+  ...,
+  intercept = 0,
+  slope = 1,
+  tol = .Machine$double.eps^0.5
+)
 
-VaR_cdf(dist, x = 0.05, ..., intercept = 0, slope = 1,
-  tol = .Machine$double.eps^0.5)
+VaR_cdf(
+  dist,
+  x = 0.05,
+  ...,
+  intercept = 0,
+  slope = 1,
+  tol = .Machine$double.eps^0.5
+)
 
-\method{VaR}{default}(dist, x = 0.05, dist.type = "qf", ...,
-  intercept = 0, slope = 1, tol = .Machine$double.eps^0.5)
+\method{VaR}{default}(
+  dist,
+  x = 0.05,
+  dist.type = "qf",
+  ...,
+  intercept = 0,
+  slope = 1,
+  tol = .Machine$double.eps^0.5
+)
 
 \method{VaR}{numeric}(dist, x = 0.05, ..., intercept = 0, slope = 1)
 }
@@ -34,10 +60,7 @@ Details.}
 
 \item{...}{passed on to \code{dist}.}
 
-\item{intercept}{requests the ES for the linear transformation \code{intercept +
-slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.}
-
-\item{slope}{requests the ES for the linear transformation \code{intercept +
+\item{intercept, slope}{compute VaR for the linear transformation \code{intercept +
 slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.}
 
 \item{tol}{tollerance}
@@ -65,7 +88,8 @@ We use the traditional definition of VaR as the negated lower quantile. For exam
 \examples{
 cvar::VaR(qnorm, x = c(0.01, 0.05), dist.type = "qf")
 
-## the following examples use these values:
+## the following examples use these values, obtained by fitting a normal distribution to
+## some data:
 muA <- 0.006408553
 sigma2A <- 0.0004018977
 
@@ -131,4 +155,9 @@ if (requireNamespace("PerformanceAnalytics", quietly = TRUE)) withAutoprint({
     max(abs((vPA - vAz2b))) # 3.330669e-16
 })
 
+}
+\seealso{
+\code{\link{ES}} for ES,
+
+    \code{\link[=predict.garch1c1]{predict}} for examples with fitted models
 }

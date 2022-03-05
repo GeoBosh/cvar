@@ -12,16 +12,12 @@
 
 # cvar 0.4-0 (CRAN)
 
-# cvar 0.3-1
-
 * fix tests to pass with the changed R random generator.
 
 * some new examples and minor documentation changes.
 
 
 # cvar 0.3-0 (CRAN)
-
-# cvar 0.2-1
 
 * now `\VignetteIndexEntry` in `Guide_cvar.Rnw` is plain text.
 
@@ -37,17 +33,11 @@
 
 # cvar 0.2-0 (CRAN)
 
-* prepare for CRAN
-
-# cvar 0.1-3
-
 * suggest 'covr'.
 
 * setup for travisCI and Coveralls.
 
 * more tests.
-
-# cvar 0.1-2
 
 * corrected \VignetteIndexEntry in the vignette --- I used the vignette for Rdpack as a
   template but didn't change this entry, which resulted in the vignette appearing with a
@@ -56,6 +46,7 @@
 * added author@R in DESCRIPTION.
 
 * added experimental web site (docs/)
+
 
 # cvar 0.1-1 (CRAN)
 

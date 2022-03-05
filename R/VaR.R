@@ -12,6 +12,11 @@
 #'
 #' @inheritParams ES
 #'
+#' @param intercept,slope compute VaR for the linear transformation \code{intercept +
+#'     slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.
+#'
+#' 
+#'
 #' @details
 #'     \code{VaR} is S3 generic. The meaning of the parameters for its default method is the
 #'     same as in \code{\link{ES}}, including the recycling rules.
@@ -22,10 +27,15 @@
 #'
 #' @param tol tollerance
 #'
+#' @seealso \code{\link{ES}} for ES,
+#'
+#'     \code{\link[=predict.garch1c1]{predict}} for examples with fitted models
+#' 
 #' @examples
 #' cvar::VaR(qnorm, x = c(0.01, 0.05), dist.type = "qf")
 #'
-#' ## the following examples use these values:
+#' ## the following examples use these values, obtained by fitting a normal distribution to
+#' ## some data:
 #' muA <- 0.006408553
 #' sigma2A <- 0.0004018977
 #'
@@ -206,7 +216,10 @@ VaR.numeric <- function(dist, x = 0.05, ..., intercept = 0, slope  = 1){
 
 #' @title Compute expected shortfall (ES) of distributions
 #'
-#' @description \code{ES} computes the expected shortfall for distributions specified by the
+#' @description
+#'     Compute the expected shortfall for a distribution. 
+#'
+#' @details \code{ES} computes the expected shortfall for distributions specified by the
 #'     arguments. \code{dist} is typically a function (or the name of one). What \code{dist}
 #'     computes is determined by \code{dist.type}, whose default setting is \code{"qf"} (the
 #'     quantile function). Other possible settings of \code{dist.type} include \code{"cdf"}
@@ -260,7 +273,7 @@ VaR.numeric <- function(dist, x = 0.05, ..., intercept = 0, slope  = 1){
 #'
 #' @param qf quantile function, only used if \code{dist.type = "pdf"}.
 #'
-#' @param intercept,slope requests the ES for the linear transformation \code{intercept +
+#' @param intercept,slope compute ES for the linear transformation \code{intercept +
 #'     slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.
 #'
 #' @param control additional control parameters for the numerical integration routine.
@@ -270,6 +283,10 @@ VaR.numeric <- function(dist, x = 0.05, ..., intercept = 0, slope  = 1){
 #'
 #' @return a numeric vector
 #'
+#' @seealso \code{\link{VaR}} for VaR,
+#'
+#'     \code{\link[=predict.garch1c1]{predict}} for examples with fitted models
+#' 
 #' @examples
 #' ES(qnorm)
 #'
