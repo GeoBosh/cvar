@@ -2,7 +2,6 @@ Package: cvar
 Type: Package
 Title: Compute Expected Shortfall and Value at Risk for Continuous Distributions
 Version: 0.4.1
-Date: 2022-03-05
 Authors@R: person(given = c("Georgi", "N."), family = "Boshnakov",
                   role = c("aut", "cre"), 
                   email = "georgi.boshnakov@manchester.ac.uk")
@@ -14,11 +13,11 @@ Description: Compute expected shortfall (ES) and Value at Risk (VaR) from a
     done directly from the definitions, see e.g. Acerbi and Tasche (2002)
     <doi:10.1111/1468-0300.00091>. Some support for GARCH models is provided,
     as well.
-URL: https://github.com/GeoBosh/cvar https://geobosh.github.io/cvar/
+URL: https://github.com/GeoBosh/cvar (devel), https://geobosh.github.io/cvar/ (doc)
 BugReports: https://github.com/GeoBosh/cvar/issues
 Imports: gbutils, Rdpack (>= 0.8), fGarch
 RdMacros: Rdpack
 License: GPL (>=2)
 Collate: VaR.R cvar-package.R garch.R
 RoxygenNote: 7.1.2
-Suggests: testthat, PerformanceAnalytics, covr
+Suggests: testthat, PerformanceAnalytics

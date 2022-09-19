@@ -1,5 +1,8 @@
 # cvar 0.4.1
 
+* when the input was numeric, `ES()` was not handling the level `x` properly
+  (fixes issue #2, reported by Marius Bommert).
+
 * changed the JSS reference to use the new-style doi.
 
 * fixed a bug in the tests, in v0.4-0, that was causing faiure of the tests on

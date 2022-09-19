@@ -331,7 +331,7 @@ ES <- function(dist, x = 0.05, dist.type = "qf", qf, ...,
 
     ## 2018-09-30 handle "numeric" to complement VaR.numeric()
     if(is.numeric(dist)){
-        v <- VaR.numeric(dist, x = 0.05, ..., intercept = intercept, slope = slope)
+        v <- VaR.numeric(dist, x = x, ..., intercept = intercept, slope = slope)
         bad <- dist[dist <= - v]
         res <- - mean(bad)
         return(res)
