@@ -27,8 +27,10 @@ expect_equal(res2a, VaR_cdf(pnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A)))
 set.seed(1236)
 a.num <- rnorm(100)
 VaR(a.num)
-ES(a.num)
 
+## test the fix for issue #2
+expect_true(ES(a.num) == ES(a.num, x = 0.05))
+expect_true(ES(a.num) != ES(a.num, x = 0.01))
 
 ## as above, but increase the precision, this is probably excessive
 res1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
