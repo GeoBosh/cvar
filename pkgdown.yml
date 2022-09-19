@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 2.0.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-03-05T14:50Z
+last_built: 2022-09-19T15:59Z
 urls:
   reference: https://geobosh.github.io/cvar/reference
   article: https://geobosh.github.io/cvar/articles
