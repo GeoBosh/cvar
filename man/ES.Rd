@@ -48,6 +48,13 @@ Compute the expected shortfall for a distribution.
     and \code{"pdf"}.  Additional arguments for \code{dist} can be given with the
     \code{"..."} arguments.
 
+    Argument \code{dist} can also be a numeric vector. In that case the ES is computed,
+    effectively, for the empirical cumulative distribution function (ecdf) of the
+    vector. The ecdf is not created explicitly and the \code{\link[stats]{quantile}}
+    function is used instead for the computation of VaR. Arguments in \code{"..."} are
+    passed eventually to \code{quantile()} and can be used, for example, to select a
+    non-defult method for the computation of quantiles.
+
     Except for the exceptions discussed below, a function computing VaR for the specified
     distribution is constructed and the expected shortfall is computed by numerically
     integrating it. The numerical integration can be fine-tuned with argument

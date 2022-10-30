@@ -1,6 +1,6 @@
 #' Compute Value-at-Risk (VaR)
 #'
-#' @description \code{Var} computes the Value-at-Risk of the distribution specified by the
+#' @description \code{VaR} computes the Value-at-Risk of the distribution specified by the
 #'     arguments. The meaning of the parameters is the same as in \code{\link{ES}}, including
 #'     the recycling rules.
 #'
@@ -14,7 +14,6 @@
 #'
 #' @param intercept,slope compute VaR for the linear transformation \code{intercept +
 #'     slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.
-#'
 #' 
 #'
 #' @details
@@ -25,6 +24,23 @@
 #'     case when the \code{"..."} parameters are scalar. The parameters \code{x},
 #'     \code{intercept}, and \code{slope} can be vectors, as for \code{VaR}.
 #'
+#'     Argument \code{dist} can also be a numeric vector. In that case the ES is computed,
+#'     effectively, for the empirical cumulative distribution function (ecdf) of the
+#'     vector. The ecdf is not created explicitly and the \code{\link[stats]{quantile}}
+#'     function is used instead for the computation of VaR. Arguments in \code{"..."} are
+#'     passed eventually to \code{quantile()} and can be used, for example, to select a
+#'     non-defult method for the computation of quantiles.
+#'
+#'     In practice, we may need to compute VaR associated with data. The distribution comes
+#'     from fitting a model. In the simplest case, we fit a distribution to the data,
+#'     assuming that the sample is i.i.d. For example, a normal distribution \eqn{N(\mu,
+#'     \sigma^2)} can be fitted using the sample mean and sample variance as estimates of the
+#'     unknown parameters \eqn{\mu} and \eqn{\sigma^2}, see section \sQuote{Examples}. For
+#'     other common distributions there are specialised functions to fit their parameters and
+#'     if not, general optimisation routines can be used. More soffisticated models may be
+#'     used, even time series models such as GARCH and mixture autoregressive models.
+#'     
+#'     
 #' @param tol tollerance
 #'
 #' @seealso \code{\link{ES}} for ES,
@@ -39,11 +55,16 @@
 #' muA <- 0.006408553
 #' sigma2A <- 0.0004018977
 #'
-#' ## with quantile function
+#' ## with quantile function, giving the parameters directly in the call:
 #' res1 <- cvar::VaR(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
 #' res2 <- cvar::VaR(qnorm, x = 0.05, intercept = muA, slope = sqrt(sigma2A))
 #' abs((res2 - res1)) # 0, intercept/slope equivalent to mean/sd
 #'
+#' ## with quantile function, which already knows the parameters:
+#' my_qnorm <- function(p) qnorm(p, mean = muA, sd = sqrt(sigma2A))
+#' res1_alt <- cvar::VaR(my_qnorm, x = 0.05)
+#' abs((res1_alt - res1))
+#' 
 #' ## with cdf the precision depends on solving an equation
 #' res1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A))
 #' res2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A))
@@ -225,6 +246,13 @@ VaR.numeric <- function(dist, x = 0.05, ..., intercept = 0, slope  = 1){
 #'     quantile function). Other possible settings of \code{dist.type} include \code{"cdf"}
 #'     and \code{"pdf"}.  Additional arguments for \code{dist} can be given with the
 #'     \code{"..."} arguments.
+#'
+#'     Argument \code{dist} can also be a numeric vector. In that case the ES is computed,
+#'     effectively, for the empirical cumulative distribution function (ecdf) of the
+#'     vector. The ecdf is not created explicitly and the \code{\link[stats]{quantile}}
+#'     function is used instead for the computation of VaR. Arguments in \code{"..."} are
+#'     passed eventually to \code{quantile()} and can be used, for example, to select a
+#'     non-defult method for the computation of quantiles.
 #'
 #'     Except for the exceptions discussed below, a function computing VaR for the specified
 #'     distribution is constructed and the expected shortfall is computed by numerically

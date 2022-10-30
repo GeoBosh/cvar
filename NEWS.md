@@ -1,4 +1,4 @@
-# cvar 0.4.1
+# cvar 0.4.1 (CRAN)
 
 * when the input was numeric, `ES()` was not handling the level `x` properly
   (fixes issue #2, reported by Marius Bommert).

@@ -76,6 +76,15 @@
 #'     currently under development, see \code{\link{predict.garch1c1}}
 #'     for current functionality.
 #'
+#'     In practice, we may need to compute VaR associated with data. The distribution comes
+#'     from fitting a model. In the simplest case, we fit a distribution to the data,
+#'     assuming that the sample is i.i.d. For example, a normal distribution \eqn{N(\mu,
+#'     \sigma^2)} can be fitted using the sample mean and sample variance as estimates of the
+#'     unknown parameters \eqn{\mu} and \eqn{\sigma^2}, see section \sQuote{Examples}. For other
+#'     common distributions there are specialised functions to fit their parameters and if
+#'     not, general optimisation routines can be used. More soffisticated models may be used,
+#'     even time series models such as GARCH and mixture autoregressive models.
+#'
 #' @references
 #'   \insertAllCited{}
 #'
