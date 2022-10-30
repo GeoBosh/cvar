@@ -20,7 +20,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cvar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,6 +117,14 @@
 <p>Some support for GARCH models is provided, as well. It is
     currently under development, see <code><a href="predict.garch1c1.html">predict.garch1c1</a></code>
     for current functionality.</p>
+<p>In practice, we may need to compute VaR associated with data. The distribution comes
+    from fitting a model. In the simplest case, we fit a distribution to the data,
+    assuming that the sample is i.i.d. For example, a normal distribution \(N(\mu,
+    \sigma^2)\) can be fitted using the sample mean and sample variance as estimates of the
+    unknown parameters \(\mu\) and \(\sigma^2\), see section ‘Examples’. For other
+    common distributions there are specialised functions to fit their parameters and if
+    not, general optimisation routines can be used. More soffisticated models may be used,
+    even time series models such as GARCH and mixture autoregressive models.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
