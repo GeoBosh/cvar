@@ -9,7 +9,7 @@ GarchModel(model = list(), ..., model.class = NULL)
 \arguments{
 \item{model}{a GARCH model or a list.}
 
-\item{...}{named argument specifying the GARCH model.}
+\item{...}{named arguments specifying the GARCH model.}
 
 \item{model.class}{a class for the result. By default \code{GarchModel()}
 decides the class of the result.}

@@ -1,3 +1,24 @@
+# cvar 0.5 (CRAN)
+
+* made `ES` generic (`VaR` was already generic).
+
+* moved `fGarch` from Imports to Suggests.
+
+* renamed argument `x` of `VaR` and `ES` to `p_loss`. `p_loss` seems more
+  expressive and suggests that it relates to the losses, usually small numbers
+  like `0.05`. Other suitable names like `alpha`, `p`, and `prob`, are commonly
+  used as arguments to other functions that might be used as argument `dist` and
+  make them more difficult to pass via the `...` arguments.
+
+  For now, an warning is issued if `x` is used as a named argument in a call
+  (e.g. `VaR(dist, x = 0.05)`) with the intend to turn that in an error in the
+  next release of the package. This change should not be noticed by most users
+  since it is much more natural not to name this argument and use something like
+  `VaR(dist, 0.05)`.
+
+* moved `fGarch` from Imports to Suggests.
+
+
 # cvar 0.4.1 (CRAN)
 
 * when the input was numeric, `ES()` was not handling the level `x` properly

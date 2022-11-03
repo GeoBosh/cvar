@@ -10,7 +10,7 @@
 #' models in this package is changed or additional functionality is added.
 #'
 #' @param model a GARCH model or a list.
-#' @param ... named argument specifying the GARCH model.
+#' @param ... named arguments specifying the GARCH model.
 #' @param model.class a class for the result. By default \code{GarchModel()}
 #'     decides the class of the result.
 #' @return an object from suitable GARCH-type class
@@ -38,7 +38,7 @@
 #' @export
 GarchModel <- function(model = list(), ..., model.class = NULL){
     ## TODO: check the correctness of the parameters
-    ## alpha, beta, cond.dist, 2nd order stationary, initial vaalue for eps_t^2, h_t
+    ## alpha, beta, cond.dist, 2nd order stationary, initial value for eps_t^2, h_t
 
     ## 2019-03-15 TODO: handle fGARCH models
     ## if(inherits(model, "fGARCH")){
@@ -57,74 +57,97 @@ GarchModel <- function(model = list(), ..., model.class = NULL){
     model
 }
 
+## 2022-11-01 change .dist from 'list' to 'env', was:
+    # .dist <- list(
+    #     norm = list(d = call("dnorm", x = NA, mean = 0, sd = 1),
+    #                 p = call("pnorm", q = NA, mean = 0, sd = 1),
+    #                 q = call("qnorm", p = NA, mean = 0, sd = 1),
+    #                 r = call("rnorm", n = NA, mean = 0, sd = 1)),
+    #     std  = list(d = call("dstd",  x = NA, mean = 0, sd = 1, nu = NA),
+    #                 p = call("pstd",  q = NA, mean = 0, sd = 1, nu = NA),
+    #                 q = call("qstd",  p = NA, mean = 0, sd = 1, nu = NA),
+    #                 r = call("rstd",  n = NA, mean = 0, sd = 1, nu = NA)),
+    #     ged  = list(d = call("dged",  x = NA, mean = 0, sd = 1, nu = NA),
+    #                 p = call("pged",  q = NA, mean = 0, sd = 1, nu = NA),
+    #                 q = call("qged",  p = NA, mean = 0, sd = 1, nu = NA),
+    #                 r = call("rged",  n = NA, mean = 0, sd = 1, nu = NA))
+    # )
 
-.dist <- list(
-    norm = list(d = call("dnorm", x = NA, mean = 0, sd = 1),
-                p = call("pnorm", q = NA, mean = 0, sd = 1),
-                q = call("qnorm", p = NA, mean = 0, sd = 1),
-                r = call("rnorm", n = NA, mean = 0, sd = 1)),
-    std  = list(d = call("dstd",  x = NA, mean = 0, sd = 1, nu = NA),
-                p = call("pstd",  q = NA, mean = 0, sd = 1, nu = NA),
-                q = call("qstd",  p = NA, mean = 0, sd = 1, nu = NA),
-                r = call("rstd",  n = NA, mean = 0, sd = 1, nu = NA)),
-    ged  = list(d = call("dged",  x = NA, mean = 0, sd = 1, nu = NA),
-                p = call("pged",  q = NA, mean = 0, sd = 1, nu = NA),
-                q = call("qged",  p = NA, mean = 0, sd = 1, nu = NA),
-                r = call("rged",  n = NA, mean = 0, sd = 1, nu = NA))
+.dist <- new.env()
+
+## N(0,1) is built-in
+.dist$norm <- list(d = call("dnorm", x = NA, mean = 0, sd = 1),
+                   p = call("pnorm", q = NA, mean = 0, sd = 1),
+                   q = call("qnorm", p = NA, mean = 0, sd = 1),
+                   r = call("rnorm", n = NA, mean = 0, sd = 1))
+
+
+    # generalise and prepare to make fGarch suggested; was:
+    # 
+    # .dist$std  <- list(d = call("dstd",  x = NA, mean = 0, sd = 1, nu = NA),
+    #                    p = call("pstd",  q = NA, mean = 0, sd = 1, nu = NA),
+    #                    q = call("qstd",  p = NA, mean = 0, sd = 1, nu = NA),
+    #                    r = call("rstd",  n = NA, mean = 0, sd = 1, nu = NA))
+    # 
+    # .dist$ged  <- list(d = call("dged",  x = NA, mean = 0, sd = 1, nu = NA),
+    #                    p = call("pged",  q = NA, mean = 0, sd = 1, nu = NA),
+    #                    q = call("qged",  p = NA, mean = 0, sd = 1, nu = NA),
+    #                    r = call("rged",  n = NA, mean = 0, sd = 1, nu = NA))
+
+.dist_list <- list(
+    ## TODO: allow different packages here by letting 'package be vector or completely
+    ##       refactor all this. Only '.get_dist_elem()' should know the implementation.
+    std = list(package = "fGarch",
+               d = list(str2lang("fGarch::dstd"), x = NA, mean = 0, sd = 1, nu = NA),
+               p = list(str2lang("fGarch::pstd"), q = NA, mean = 0, sd = 1, nu = NA),
+               q = list(str2lang("fGarch::qstd"), p = NA, mean = 0, sd = 1, nu = NA),
+               r = list(str2lang("fGarch::rstd"), n = NA, mean = 0, sd = 1, nu = NA)),
+
+    ged = list(package = "fGarch",
+               d = list(str2lang("fGarch::dged"), x = NA, mean = 0, sd = 1, nu = NA),
+               p = list(str2lang("fGarch::pged"), q = NA, mean = 0, sd = 1, nu = NA),
+               q = list(str2lang("fGarch::qged"), p = NA, mean = 0, sd = 1, nu = NA),
+               r = list(str2lang("fGarch::rged"), n = NA, mean = 0, sd = 1, nu = NA))
 )
 
-.rgen <- function(dist){
-    if(is.character(dist)){
-        gen <- .dist[[dist]]
-        if(is.null(gen)){
-            stop("this case is not implemented yet.")
-        }else
-            return(gen$r)
-    }else if(is.null(dist)){
+.get_dist_elem <- function(dist, what){
+    if(is.list(dist)){
+        params <- dist[-1]
+        dist <- dist[[1]]
+    }else
+        params <- list()
+
+    if(is.null(dist)){  ## TODO: this probably should be handled by the caller
         ## normal distribution is default
-        return(.dist$norm$r)
-    }else if(is.list(dist)){
-        ## assuming dist[[1]] is character string
-        gen <- .dist[[ dist[[1]] ]]
-        if(is.null(gen)){
-            stop("this case is not implemented yet.")
-        }else{
-            res <- gen$r
-            if(length(dist) > 1)  # set parameters if specified
-                res[names(dist[-1])] <- dist[-1]
+        res <- .dist$norm[[what]]
+    }else{
+        stopifnot(is.character(dist), length(dist) == 1)
 
-            return(res)
-        }
-    }
-
-    stop("invalid distribution specification.")
-}
-
-.get_cond_dist <- function(dist, what){
-   if(is.character(dist)){
         gen <- .dist[[dist]]
-        if(is.null(gen)){
-            stop("this case is not implemented yet.")
-        }else
-            return(gen[[what]])
-    }else if(is.null(dist)){
-        ## normal distribution is default
-        return(.dist$norm[[what]])
-    }else if(is.list(dist)){
-        ## assuming dist[[1]] is character string
-        gen <- .dist[[ dist[[1]] ]]
-        if(is.null(gen)){
-            stop("this case is not implemented yet.")
-        }else{
+        if(!is.null(gen))  # already prepared
             res <- gen[[what]]
-            if(length(dist) > 1)  # set parameters if specified
-                res[names(dist[-1])] <- dist[-1]
+        else{ # not prepared yet
+            gen_list <- .dist_list[[dist]]
+            if(is.null(gen_list))
+                stop("unknown distribution specified.")
 
-            return(res)
+            if(!requireNamespace(gen_list$package))
+                stop("requested distribution property needs package ", gen_list$package,
+                     "\nplease install package '", gen_list$package, "' and try again")
+    
+            ## prepare
+            ## .dist is env, so assignment is persistent
+            .dist[[dist]] <- lapply(gen_list[-1], as.call) # dropping $package
+            res <- .dist[[dist]][[what]]
+            if(is.null(res))
+                stop("property '", "'what not available for '", dist, "'")
         }
     }
 
-    stop("this case is not implemented yet.")
+    if(length(params) > 0)  # set parameters if specified
+        res[names(params)] <- params
+
+    res
 }
 
 #' Simulate GARCH(1,1) time series
@@ -166,7 +189,7 @@ sim_garch1c1 <- function(model, n, n.start = 0, seed = NULL){
     omega  <- model$omega
     alpha  <- model$alpha
     beta   <- model$beta
-    rgen   <- .rgen(model$cond.dist)
+    rgen   <- .get_dist_elem(model$cond.dist, "r")
 
     eps0   <- model$eps0
     h0     <- model$h0
@@ -380,7 +403,7 @@ predict.garch1c1 <- function(object, n.ahead = 1, Nsim = 1000, eps, sigmasq, see
             pred_h[i] <- omega + (alpha + beta) * pred_h[i - 1]
         }
 
-    fq <- .get_cond_dist(model$cond.dist, "q")
+    fq <- .get_dist_elem(model$cond.dist, "q")
     fq$sd <- sqrt(pred_h)
 
     fq[[2]] <- 0.025

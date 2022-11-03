@@ -2,17 +2,34 @@
 % Please edit documentation in R/VaR.R
 \name{ES}
 \alias{ES}
+\alias{ES.default}
+\alias{ES.numeric}
 \title{Compute expected shortfall (ES) of distributions}
 \usage{
-ES(
+ES(dist, p_loss = 0.05, ...)
+
+\method{ES}{default}(
   dist,
-  x = 0.05,
+  p_loss = 0.05,
   dist.type = "qf",
   qf,
   ...,
   intercept = 0,
   slope = 1,
-  control = list()
+  control = list(),
+  x
+)
+
+\method{ES}{numeric}(
+  dist,
+  p_loss = 0.05,
+  dist.type = "qf",
+  qf,
+  ...,
+  intercept = 0,
+  slope = 1,
+  control = list(),
+  x
 )
 }
 \arguments{
@@ -20,19 +37,22 @@ ES(
 of a function computing quantiles, cdf, pdf, or a random number generator, see
 Details.}
 
-\item{x}{level, default is 0.05}
+\item{p_loss}{level, default is 0.05.}
+
+\item{...}{passed on to \code{dist}.}
 
 \item{dist.type}{a character string specifying what is computed by \code{dist}, such as
 "qf" or "cdf".}
 
 \item{qf}{quantile function, only used if \code{dist.type = "pdf"}.}
 
-\item{...}{passed on to \code{dist}.}
-
 \item{intercept, slope}{compute ES for the linear transformation \code{intercept +
 slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.}
 
 \item{control}{additional control parameters for the numerical integration routine.}
+
+\item{x}{deprecated and will soon be removed. \code{x} was renamed to \code{p_loss},
+please use the latter.}
 }
 \value{
 a numeric vector
@@ -101,19 +121,19 @@ ES(pnorm, dist.type = "cdf")
 ES(qt, dist.type = "qf", df = 4)
 ES(pt, dist.type = "cdf", df = 4)
 
-ES(pnorm, x= 0.95, dist.type = "cdf")
-ES(qnorm, x= 0.95, dist.type = "qf")
+ES(pnorm, 0.95, dist.type = "cdf")
+ES(qnorm, 0.95, dist.type = "qf")
 ## - VaRES::esnormal(0.95, 0, 1)
 ## - PerformanceAnalytics::ETL(p=0.05, method = "gaussian", mu = 0,
 ##                             sigma = 1, weights = 1)             # same
 
 cvar::ES(pnorm, dist.type = "cdf")
 cvar::ES(qnorm, dist.type = "qf")
-cvar::ES(pnorm, x= 0.05, dist.type = "cdf")
-cvar::ES(qnorm, x= 0.05, dist.type = "qf")
+cvar::ES(pnorm, 0.05, dist.type = "cdf")
+cvar::ES(qnorm, 0.05, dist.type = "qf")
 
 ## this uses "pdf"
-cvar::ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm)
+cvar::ES(dnorm, 0.05, dist.type = "pdf", qf = qnorm)
 
 
 ## this gives warning (it does more than simply computing ES):
@@ -122,7 +142,7 @@ cvar::ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm)
 ## run this if VaRRES is present
 \dontrun{
 x <- seq(0.01, 0.99, length = 100)
-y <- sapply(x, function(p) cvar::ES(qnorm, x = p, dist.type = "qf"))
+y <- sapply(x, function(p) cvar::ES(qnorm, p, dist.type = "qf"))
 yS <- sapply(x, function(p) - VaRES::esnormal(p))
 plot(x, y)
 lines(x, yS, col = "blue")

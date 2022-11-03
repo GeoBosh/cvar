@@ -41,35 +41,35 @@ test_that("garch1c1 related functions work ok", {
     sim_garch1c1(a_mo, n = 100, n.start = 100)
     predict(a_mo, n.ahead = 5, Nsim = 100, eps = a$eps, sigmasq = a$h)
 
-    expect_equal(.rgen(NULL), .dist$norm$r)
+    expect_equal(.get_dist_elem(NULL, "r"), .dist$norm$r)
     ## for now
-    expect_error(.rgen("unknowndist"))
-    expect_error(.rgen(list("unknowndist")))
-    expect_error(.rgen(5))
+    expect_error(.get_dist_elem("unknowndist", "r"))
+    expect_error(.get_dist_elem(list("unknowndist"), "r"))
+    expect_error(.get_dist_elem(5, "r"))
 
-    .rgen(list("norm"))
-    .rgen(list("norm", mean = 5, sd = 3))
-    .rgen(list("norm", mean = 5, sd = 3, n = 10))
+    .get_dist_elem(list("norm"), "r")
+    .get_dist_elem(list("norm", mean = 5, sd = 3), "r")
+    .get_dist_elem(list("norm", mean = 5, sd = 3, n = 10), "r")
 
-    .rgen("std")
-    .rgen(list("std", df = 5))
-    .rgen(list("std", df = 5, n = 10))
+    .get_dist_elem("std", "r")
+    .get_dist_elem(list("std", df = 5), "r")
+    .get_dist_elem(list("std", df = 5, n = 10), "r")
 
-    .rgen(list("ged"))
+    .get_dist_elem(list("ged"), "r")
 
-    expect_equal(.get_cond_dist(NULL, "p"), .dist$norm[["p"]])
+    expect_equal(.get_dist_elem(NULL, "p"), .dist$norm[["p"]])
 
-    .get_cond_dist("norm", "d")
-    .get_cond_dist("norm", "p")
-    .get_cond_dist("norm", "q")
-    .get_cond_dist("norm", "r")
+    .get_dist_elem("norm", "d")
+    .get_dist_elem("norm", "p")
+    .get_dist_elem("norm", "q")
+    .get_dist_elem("norm", "r")
 
-    .get_cond_dist(list("norm"), "p")
-    .get_cond_dist(list("norm", mean = 4, sd = 2), "p")
+    .get_dist_elem(list("norm"), "p")
+    .get_dist_elem(list("norm", mean = 4, sd = 2), "p")
     
     ## for now
-    expect_error(.get_cond_dist("unknowndist"))
-    expect_error(.get_cond_dist(list("unknowndist")))
-    expect_error(.get_cond_dist(5))
+    expect_error(.get_dist_elem("unknowndist"))
+    expect_error(.get_dist_elem(list("unknowndist")))
+    expect_error(.get_dist_elem(5))
 
 })

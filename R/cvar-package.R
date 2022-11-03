@@ -4,7 +4,7 @@
 #' @importFrom gbutils cdf2quantile
 #' @importFrom Rdpack reprompt
 #'
-#' @importFrom fGarch dstd pstd qstd rstd dged pged qged rged
+#'
 #'
 #' @docType package
 #' @name cvar-package

@@ -7,21 +7,21 @@ muA <- 0.006408553
 sigma2A <- 0.0004018977
 
 ## with quantile function
-res1 <- cvar::VaR(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
-res2 <- cvar::VaR(qnorm, x = 0.05, intercept = muA, slope = sqrt(sigma2A))
+res1 <- cvar::VaR(qnorm, p_loss = 0.05, mean = muA, sd = sqrt(sigma2A))
+res2 <- cvar::VaR(qnorm, p_loss = 0.05, intercept = muA, slope = sqrt(sigma2A))
 abs((res2 - res1)) # 0, intercept/slope equivalent to mean/sd
 
-expect_error(cvar::VaR(dnorm, dist.type = "pdf", x = 0.05, intercept = muA, slope = sqrt(sigma2A)), "Not ready")
-cvar::VaR_qf(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
+expect_error(cvar::VaR(dnorm, dist.type = "pdf", p_loss = 0.05, intercept = muA, slope = sqrt(sigma2A)), "Not ready")
+cvar::VaR_qf(qnorm, p_loss = 0.05, mean = muA, sd = sqrt(sigma2A))
 
 ## with cdf the precision depends on solving an equation
-res1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A))
-res2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A))
+res1a <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A))
+res2a <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A))
 abs((res1a - res2)) # 3.287939e-09
 abs((res2a - res2)) # 5.331195e-11, intercept/slope better numerically
 
-expect_equal(res1, VaR_qf(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A)))
-expect_equal(res2a, VaR_cdf(pnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A)))
+expect_equal(res1, VaR_qf(qnorm, p_loss = 0.05, mean = muA, sd = sqrt(sigma2A)))
+expect_equal(res2a, VaR_cdf(pnorm, p_loss = 0.05, mean = muA, sd = sqrt(sigma2A)))
 
  
 set.seed(1236)
@@ -29,12 +29,12 @@ a.num <- rnorm(100)
 VaR(a.num)
 
 ## test the fix for issue #2
-expect_true(ES(a.num) == ES(a.num, x = 0.05))
-expect_true(ES(a.num) != ES(a.num, x = 0.01))
+expect_true(ES(a.num) == ES(a.num, p_loss = 0.05))
+expect_true(ES(a.num) != ES(a.num, p_loss = 0.01))
 
 ## as above, but increase the precision, this is probably excessive
-res1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
-res2b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
+res1b <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
+res2b <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
 
 expect_lt( abs((res1b - res2)), 1e-12) # 6.938894e-18 # both within machine precision
 expect_lt( abs((res2b - res2)), 1e-12) # 1.040834e-16
@@ -52,18 +52,18 @@ if(require("PerformanceAnalytics")){
     musigma2 <- cbind(mu, sigma2)
 
     ## compute in 2 ways with cvar::VaR
-    vAz1 <- cvar::VaR(qnorm, x = 0.05, mean = mu, sd = sqrt(sigma2))
-    vAz2 <- cvar::VaR(qnorm, x = 0.05, intercept = mu, slope = sqrt(sigma2))
+    vAz1 <- cvar::VaR(qnorm, p_loss = 0.05, mean = mu, sd = sqrt(sigma2))
+    vAz2 <- cvar::VaR(qnorm, p_loss = 0.05, intercept = mu, slope = sqrt(sigma2))
 
-    vAz1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+    vAz1a <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                        mean = mu, sd = sqrt(sigma2))
-    vAz2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+    vAz2a <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                        intercept = mu, slope = sqrt(sigma2))
 
-    vAz1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+    vAz1b <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    mean = mu, sd = sqrt(sigma2),
                    tol = .Machine$double.eps^0.75)
-    vAz2b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+    vAz2b <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    intercept = mu, slope = sqrt(sigma2),
                    tol = .Machine$double.eps^0.75)
 
@@ -98,23 +98,23 @@ expect_equal(ES(qnorm, dist.type = "qf"),
 expect_equal(ES(qt, dist.type = "qf", df = 4),
              ES(pt, dist.type = "cdf", df = 4) )
 
-expect_equal(ES(pnorm, x = 0.95, dist.type = "cdf"),
-             ES(qnorm, x = 0.95, dist.type = "qf") )
+expect_equal(ES(pnorm, p_loss = 0.95, dist.type = "cdf"),
+             ES(qnorm, p_loss = 0.95, dist.type = "qf") )
 ## - VaRES::esnormal(0.95, 0, 1)
 ## - PerformanceAnalytics::ETL(p=0.05, method = "gaussian", mu = 0,
 ##                             sigma = 1, weights = 1)             # same
 
 
 ## this uses "pdf"
-expect_equal(ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm),
-             ES(pnorm, x = 0.05, dist.type = "cdf") )
+expect_equal(ES(dnorm, p_loss = 0.05, dist.type = "pdf", qf = qnorm),
+             ES(pnorm, p_loss = 0.05, dist.type = "cdf") )
 
 ## several in one call
-ES(pnorm, x = c(0.1, 0.05, 0.01), dist.type = "cdf")
-ES(dnorm, x = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm)
-ES(dnorm, x = 0.05, dist.type = "pdf", qf = qnorm)
-ES(dnorm, x = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm)
-ES(dnorm, x = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = list(qnorm, qnorm, qnorm))
-ES(dnorm, x = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = c(qnorm, qnorm, qnorm))
+ES(pnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "cdf")
+ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm)
+ES(dnorm, p_loss = 0.05, dist.type = "pdf", qf = qnorm)
+ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm)
+ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = list(qnorm, qnorm, qnorm))
+ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = c(qnorm, qnorm, qnorm))
 })
 

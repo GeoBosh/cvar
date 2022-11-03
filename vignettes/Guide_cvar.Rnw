@@ -203,14 +203,14 @@ computed very efficiently using this property.
 Here we compute the VaR associated with a standard normal r.v.
 The three variants are equivalent since 0.05 and \code{"qf"} are default for the last two arguments.
 <<>>=
-cvar::VaR(qnorm, x = 0.05, dist.type = "qf")
-cvar::VaR(qnorm, x = 0.05)
+cvar::VaR(qnorm, p_loss = 0.05, dist.type = "qf")
+cvar::VaR(qnorm, p_loss = 0.05)
 cvar::VaR(qnorm)
 @
 
 \code{x} can be a vector:
 <<>>=
-cvar::VaR(qnorm, x = c(0.01, 0.05))
+cvar::VaR(qnorm, p_loss = c(0.01, 0.05))
 @
 
 Let's set some more realistic values for the parameters of the normal distribution.  Suppose
@@ -223,22 +223,22 @@ sigma2A <- 0.0004018977
 @
 This computes VaR using the fitted normal distribution:
 <<>>=
-res1 <- cvar::VaR(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
+res1 <- cvar::VaR(qnorm, p_loss = 0.05, mean = muA, sd = sqrt(sigma2A))
 @
 
 For the normal disribution we could also use the intercept-slope arguments, since the
 parameters are precisely the intercept and the slope:
 <<>>=
-res2 <- cvar::VaR(qnorm, x = 0.05, intercept = muA, slope = sqrt(sigma2A))
+res2 <- cvar::VaR(qnorm, p_loss = 0.05, intercept = muA, slope = sqrt(sigma2A))
 abs((res2 - res1)) # 0, intercept/slope equivalent to mean/sd
 @
 
 If we compute VaR using the cdf, the intercept-slope method has some numerical advantage:
 <<>>=
 ## with cdf the precision depends on solving an equation
-res1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+res1a <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    mean = muA, sd = sqrt(sigma2A))
-res2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+res2a <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    intercept = muA, slope = sqrt(sigma2A))
 abs((res1a - res2)) # 3.287939e-09
 abs((res2a - res2)) # 5.331195e-11, intercept/slope better numerically
@@ -249,9 +249,9 @@ We can use smaller tollerance to improve the precision
 (the value \verb+.Machine$double.eps^0.75+ = \Sexpr{.Machine$double.eps^0.75} is probably excessive):
 <<>>=
 ## as above, but increase the precision, this is probably excessive
-res1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+res1b <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    mean = muA, sd = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
-res2b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+res2b <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    intercept = muA, slope = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
 abs((res1b - res2)) # 6.938894e-18 # both within machine precision
 abs((res2b - res2)) # 1.040834e-16
@@ -289,17 +289,17 @@ The results below compare to the value, \code{vPA}, obtained here.
 The computations below are similar to the previous example but the distribution parameters
 are vectors. The first pair of results are numerically the same:
 <<>>=
-vAz1 <- cvar::VaR(qnorm, x = 0.05, mean = mu, sd = sqrt(sigma2))
-vAz2 <- cvar::VaR(qnorm, x = 0.05, intercept = mu, slope = sqrt(sigma2))
+vAz1 <- cvar::VaR(qnorm, p_loss = 0.05, mean = mu, sd = sqrt(sigma2))
+vAz2 <- cvar::VaR(qnorm, p_loss = 0.05, intercept = mu, slope = sqrt(sigma2))
 max(abs((vPA - vAz1))) # 5.551115e-17
 max(abs((vPA - vAz2))) #   ""
 @
 
 Computing VaR from cdf shows some advantage for the location-scale method:
 <<>>=
-vAz1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+vAz1a <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    mean = mu, sd = sqrt(sigma2))
-vAz2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+vAz2a <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    intercept = mu, slope = sqrt(sigma2))
 max(abs((vPA - vAz1a))) # 3.287941e-09
 max(abs((vPA - vAz2a))) #  1.465251e-10, intercept/slope better
@@ -307,10 +307,10 @@ max(abs((vPA - vAz2a))) #  1.465251e-10, intercept/slope better
 
 The advantage remains for smaller tolerance:
 <<>>=
-vAz1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+vAz1b <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    mean = mu, sd = sqrt(sigma2),
                    tol = .Machine$double.eps^0.75)
-vAz2b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+vAz2b <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
                    intercept = mu, slope = sqrt(sigma2),
                    tol = .Machine$double.eps^0.75)
 max(abs((vPA - vAz1b))) # 4.374869e-13
@@ -327,14 +327,14 @@ almost literally by replacing the calls to \code{VaR} with \code{ES()} ones.
 Here we compute the VaR associated with a standard normal r.v.
 The three variants are equivalent since 0.5 and \code{"qf"} are default for the last two arguments.
 <<>>=
-cvar::ES(qnorm, x = 0.05, dist.type = "qf")
-cvar::ES(qnorm, x = 0.05)
+cvar::ES(qnorm, p_loss = 0.05, dist.type = "qf")
+cvar::ES(qnorm, p_loss = 0.05)
 cvar::ES(qnorm)
 @
 
 \code{x} can be a vector:
 <<>>=
-cvar::ES(qnorm, x = c(0.01, 0.05))
+cvar::ES(qnorm, p_loss = c(0.01, 0.05))
 @
 
 Let's set some more realistic values for the parameters of the normal distribution:
@@ -347,17 +347,17 @@ This demonstrates the use of \code{intercept} and \code{slope}. These arguments 
 linear transformation property discussed in the theoretical section. For the normal
 disribution the parameters are precisely the intercept and the slope:
 <<>>=
-res1 <- cvar::ES(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
-res2 <- cvar::ES(qnorm, x = 0.05, intercept = muA, slope = sqrt(sigma2A))
+res1 <- cvar::ES(qnorm, p_loss = 0.05, mean = muA, sd = sqrt(sigma2A))
+res2 <- cvar::ES(qnorm, p_loss = 0.05, intercept = muA, slope = sqrt(sigma2A))
 abs((res2 - res1)) 
 @
 
 If we compute ES using the cdf, the intercept slope method has some numerical advantage:
 <<>>=
 ## with cdf the precision depends on solving an equation
-res1a <- cvar::ES(pnorm, x = 0.05, dist.type = "cdf",
+res1a <- cvar::ES(pnorm, p_loss = 0.05, dist.type = "cdf",
                    mean = muA, sd = sqrt(sigma2A))
-res2a <- cvar::ES(pnorm, x = 0.05, dist.type = "cdf",
+res2a <- cvar::ES(pnorm, p_loss = 0.05, dist.type = "cdf",
                    intercept = muA, slope = sqrt(sigma2A))
 abs((res1a - res2)) # 
 abs((res2a - res2)) # intercept/slope better numerically
@@ -367,9 +367,9 @@ We can use smaller tollerance to improve the precision
 (the value \verb+.Machine$double.eps^0.75+ = \Sexpr{.Machine$double.eps^0.75} is probably excessive):
 <<>>=
 ## as above, but increase the precision, this is probably excessive
-res1b <- cvar::ES(pnorm, x = 0.05, dist.type = "cdf",
+res1b <- cvar::ES(pnorm, p_loss = 0.05, dist.type = "cdf",
                    mean = muA, sd = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
-res2b <- cvar::ES(pnorm, x = 0.05, dist.type = "cdf",
+res2b <- cvar::ES(pnorm, p_loss = 0.05, dist.type = "cdf",
                    intercept = muA, slope = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
 abs((res1b - res2))
 abs((res2b - res2))

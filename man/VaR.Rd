@@ -8,55 +8,47 @@
 \alias{VaR.numeric}
 \title{Compute Value-at-Risk (VaR)}
 \usage{
-VaR(
-  dist,
-  x = 0.05,
-  dist.type = "qf",
-  ...,
-  intercept = 0,
-  slope = 1,
-  tol = .Machine$double.eps^0.5
-)
+VaR(dist, p_loss = 0.05, ...)
 
 VaR_qf(
   dist,
-  x = 0.05,
+  p_loss = 0.05,
   ...,
   intercept = 0,
   slope = 1,
-  tol = .Machine$double.eps^0.5
+  tol = .Machine$double.eps^0.5,
+  x
 )
 
 VaR_cdf(
   dist,
-  x = 0.05,
+  p_loss = 0.05,
   ...,
   intercept = 0,
   slope = 1,
-  tol = .Machine$double.eps^0.5
+  tol = .Machine$double.eps^0.5,
+  x
 )
 
 \method{VaR}{default}(
   dist,
-  x = 0.05,
+  p_loss = 0.05,
   dist.type = "qf",
   ...,
   intercept = 0,
   slope = 1,
-  tol = .Machine$double.eps^0.5
+  tol = .Machine$double.eps^0.5,
+  x
 )
 
-\method{VaR}{numeric}(dist, x = 0.05, ..., intercept = 0, slope = 1)
+\method{VaR}{numeric}(dist, p_loss = 0.05, ..., intercept = 0, slope = 1, x)
 }
 \arguments{
 \item{dist}{specifies the distribution whose ES is computed, usually a function or a name
 of a function computing quantiles, cdf, pdf, or a random number generator, see
 Details.}
 
-\item{x}{level, default is 0.05}
-
-\item{dist.type}{a character string specifying what is computed by \code{dist}, such as
-"qf" or "cdf".}
+\item{p_loss}{level, default is 0.05.}
 
 \item{...}{passed on to \code{dist}.}
 
@@ -64,6 +56,12 @@ Details.}
 slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.}
 
 \item{tol}{tollerance}
+
+\item{x}{deprecated and will soon be removed. \code{x} was renamed to \code{p_loss},
+please use the latter.}
+
+\item{dist.type}{a character string specifying what is computed by \code{dist}, such as
+"qf" or "cdf".}
 }
 \description{
 \code{VaR} computes the Value-at-Risk of the distribution specified by the
@@ -102,7 +100,7 @@ We use the traditional definition of VaR as the negated lower quantile. For exam
     quantile of \eqn{-X}.
 }
 \examples{
-cvar::VaR(qnorm, x = c(0.01, 0.05), dist.type = "qf")
+cvar::VaR(qnorm, c(0.01, 0.05), dist.type = "qf")
 
 ## the following examples use these values, obtained by fitting a normal distribution to
 ## some data:
@@ -110,25 +108,25 @@ muA <- 0.006408553
 sigma2A <- 0.0004018977
 
 ## with quantile function, giving the parameters directly in the call:
-res1 <- cvar::VaR(qnorm, x = 0.05, mean = muA, sd = sqrt(sigma2A))
-res2 <- cvar::VaR(qnorm, x = 0.05, intercept = muA, slope = sqrt(sigma2A))
+res1 <- cvar::VaR(qnorm, 0.05, mean = muA, sd = sqrt(sigma2A))
+res2 <- cvar::VaR(qnorm, 0.05, intercept = muA, slope = sqrt(sigma2A))
 abs((res2 - res1)) # 0, intercept/slope equivalent to mean/sd
 
 ## with quantile function, which already knows the parameters:
 my_qnorm <- function(p) qnorm(p, mean = muA, sd = sqrt(sigma2A))
-res1_alt <- cvar::VaR(my_qnorm, x = 0.05)
+res1_alt <- cvar::VaR(my_qnorm, 0.05)
 abs((res1_alt - res1))
 
 ## with cdf the precision depends on solving an equation
-res1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A))
-res2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A))
+res1a <- cvar::VaR(pnorm, 0.05, dist.type = "cdf", mean = muA, sd = sqrt(sigma2A))
+res2a <- cvar::VaR(pnorm, 0.05, dist.type = "cdf", intercept = muA, slope = sqrt(sigma2A))
 abs((res1a - res2)) # 3.287939e-09
 abs((res2a - res2)) # 5.331195e-11, intercept/slope better numerically
 
 ## as above, but increase the precision, this is probably excessive
-res1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+res1b <- cvar::VaR(pnorm, 0.05, dist.type = "cdf",
                    mean = muA, sd = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
-res2b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+res2b <- cvar::VaR(pnorm, 0.05, dist.type = "cdf",
                    intercept = muA, slope = sqrt(sigma2A), tol = .Machine$double.eps^0.75)
 abs((res1b - res2)) # 6.938894e-18 # both within machine precision
 abs((res2b - res2)) # 1.040834e-16
@@ -146,18 +144,18 @@ if (requireNamespace("PerformanceAnalytics", quietly = TRUE)) withAutoprint({
     musigma2 <- cbind(mu, sigma2)
 
     ## compute in 2 ways with cvar::VaR
-    vAz1 <- cvar::VaR(qnorm, x = 0.05, mean = mu, sd = sqrt(sigma2))
-    vAz2 <- cvar::VaR(qnorm, x = 0.05, intercept = mu, slope = sqrt(sigma2))
+    vAz1 <- cvar::VaR(qnorm, 0.05, mean = mu, sd = sqrt(sigma2))
+    vAz2 <- cvar::VaR(qnorm, 0.05, intercept = mu, slope = sqrt(sigma2))
 
-    vAz1a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+    vAz1a <- cvar::VaR(pnorm, 0.05, dist.type = "cdf",
                        mean = mu, sd = sqrt(sigma2))
-    vAz2a <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+    vAz2a <- cvar::VaR(pnorm, 0.05, dist.type = "cdf",
                        intercept = mu, slope = sqrt(sigma2))
 
-    vAz1b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+    vAz1b <- cvar::VaR(pnorm, 0.05, dist.type = "cdf",
                    mean = mu, sd = sqrt(sigma2),
                    tol = .Machine$double.eps^0.75)
-    vAz2b <- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf",
+    vAz2b <- cvar::VaR(pnorm, 0.05, dist.type = "cdf",
                    intercept = mu, slope = sqrt(sigma2),
                    tol = .Machine$double.eps^0.75)
 
