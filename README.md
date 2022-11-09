@@ -1,12 +1,9 @@
-
-
-# cvar
-
 [![CRANStatusBadge](https://www.r-pkg.org/badges/version/cvar)](https://cran.r-project.org/package=cvar)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/rbibutils)](https://www.r-pkg.org/pkg/rbibutils)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/rbibutils?color=blue)](https://r-pkg.org/pkg/rbibutils)
 [![R-CMD-check](https://github.com/GeoBosh/cvar/workflows/R-CMD-check/badge.svg)](https://github.com/GeoBosh/cvar/actions)
 [![codecov](https://codecov.io/gh/GeoBosh/cvar/branch/master/graph/badge.svg?token=2SW9HKG71Y)](https://app.codecov.io/gh/GeoBosh/cvar)
 
- 
  
 ## Overview
 
