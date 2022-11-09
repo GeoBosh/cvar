@@ -14,7 +14,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cvar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,47 +57,42 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">VaR</span><span class="op">(</span></span>
-<span>  <span class="va">dist</span>,</span>
-<span>  x <span class="op">=</span> <span class="fl">0.05</span>,</span>
-<span>  dist.type <span class="op">=</span> <span class="st">"qf"</span>,</span>
-<span>  <span class="va">...</span>,</span>
-<span>  intercept <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  slope <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span></span>
-<span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">VaR</span><span class="op">(</span><span class="va">dist</span>, p_loss <span class="op">=</span> <span class="fl">0.05</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">VaR_qf</span><span class="op">(</span></span>
 <span>  <span class="va">dist</span>,</span>
-<span>  x <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  p_loss <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  intercept <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  slope <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span></span>
+<span>  tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>,</span>
+<span>  <span class="va">x</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">VaR_cdf</span><span class="op">(</span></span>
 <span>  <span class="va">dist</span>,</span>
-<span>  x <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  p_loss <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  intercept <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  slope <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span></span>
+<span>  tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>,</span>
+<span>  <span class="va">x</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for default</span></span>
 <span><span class="fu">VaR</span><span class="op">(</span></span>
 <span>  <span class="va">dist</span>,</span>
-<span>  x <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  p_loss <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  dist.type <span class="op">=</span> <span class="st">"qf"</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  intercept <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  slope <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span></span>
+<span>  tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>,</span>
+<span>  <span class="va">x</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for numeric</span></span>
-<span><span class="fu">VaR</span><span class="op">(</span><span class="va">dist</span>, x <span class="op">=</span> <span class="fl">0.05</span>, <span class="va">...</span>, intercept <span class="op">=</span> <span class="fl">0</span>, slope <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">VaR</span><span class="op">(</span><span class="va">dist</span>, p_loss <span class="op">=</span> <span class="fl">0.05</span>, <span class="va">...</span>, intercept <span class="op">=</span> <span class="fl">0</span>, slope <span class="op">=</span> <span class="fl">1</span>, <span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -108,13 +103,8 @@ of a function computing quantiles, cdf, pdf, or a random number generator, see
 Details.</p></dd>
 
 
-<dt>x</dt>
-<dd><p>level, default is 0.05</p></dd>
-
-
-<dt>dist.type</dt>
-<dd><p>a character string specifying what is computed by <code>dist</code>, such as
-"qf" or "cdf".</p></dd>
+<dt>p_loss</dt>
+<dd><p>level, default is 0.05.</p></dd>
 
 
 <dt>...</dt>
@@ -128,6 +118,16 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
 
 <dt>tol</dt>
 <dd><p>tollerance</p></dd>
+
+
+<dt>x</dt>
+<dd><p>deprecated and will soon be removed. <code>x</code> was renamed to <code>p_loss</code>,
+please use the latter.</p></dd>
+
+
+<dt>dist.type</dt>
+<dd><p>a character string specifying what is computed by <code>dist</code>, such as
+"qf" or "cdf".</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -168,7 +168,7 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span>, dist.type <span class="op">=</span> <span class="st">"qf"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span>, dist.type <span class="op">=</span> <span class="st">"qf"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.326348 1.644854</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## the following examples use these values, obtained by fitting a normal distribution to</span></span></span>
@@ -177,29 +177,29 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
 <span class="r-in"><span><span class="va">sigma2A</span> <span class="op">&lt;-</span> <span class="fl">0.0004018977</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## with quantile function, giving the parameters directly in the call:</span></span></span>
-<span class="r-in"><span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, mean <span class="op">=</span> <span class="va">muA</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, intercept <span class="op">=</span> <span class="va">muA</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, <span class="fl">0.05</span>, mean <span class="op">=</span> <span class="va">muA</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, <span class="fl">0.05</span>, intercept <span class="op">=</span> <span class="va">muA</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">res2</span> <span class="op">-</span> <span class="va">res1</span><span class="op">)</span><span class="op">)</span> <span class="co"># 0, intercept/slope equivalent to mean/sd</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## with quantile function, which already knows the parameters:</span></span></span>
 <span class="r-in"><span><span class="va">my_qnorm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="va">p</span>, mean <span class="op">=</span> <span class="va">muA</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">res1_alt</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">my_qnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res1_alt</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">my_qnorm</span>, <span class="fl">0.05</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">res1_alt</span> <span class="op">-</span> <span class="va">res1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## with cdf the precision depends on solving an equation</span></span></span>
-<span class="r-in"><span><span class="va">res1a</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>, mean <span class="op">=</span> <span class="va">muA</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">res2a</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>, intercept <span class="op">=</span> <span class="va">muA</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res1a</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>, mean <span class="op">=</span> <span class="va">muA</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res2a</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>, intercept <span class="op">=</span> <span class="va">muA</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">res1a</span> <span class="op">-</span> <span class="va">res2</span><span class="op">)</span><span class="op">)</span> <span class="co"># 3.287939e-09</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.287939e-09</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">res2a</span> <span class="op">-</span> <span class="va">res2</span><span class="op">)</span><span class="op">)</span> <span class="co"># 5.331195e-11, intercept/slope better numerically</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5.331195e-11</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## as above, but increase the precision, this is probably excessive</span></span></span>
-<span class="r-in"><span><span class="va">res1b</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
+<span class="r-in"><span><span class="va">res1b</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
 <span class="r-in"><span>                   mean <span class="op">=</span> <span class="va">muA</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span>, tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.75</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">res2b</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
+<span class="r-in"><span><span class="va">res2b</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
 <span class="r-in"><span>                   intercept <span class="op">=</span> <span class="va">muA</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2A</span><span class="op">)</span>, tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.75</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="op">(</span><span class="va">res1b</span> <span class="op">-</span> <span class="va">res2</span><span class="op">)</span><span class="op">)</span> <span class="co"># 6.938894e-18 # both within machine precision</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6.938894e-18</span>
@@ -221,18 +221,18 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
 <span class="r-in"><span>    <span class="va">musigma2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mu</span>, <span class="va">sigma2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="co">## compute in 2 ways with cvar::VaR</span></span></span>
-<span class="r-in"><span>    <span class="va">vAz1</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="va">vAz2</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, intercept <span class="op">=</span> <span class="va">mu</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">vAz1</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, <span class="fl">0.05</span>, mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">vAz2</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">qnorm</span>, <span class="fl">0.05</span>, intercept <span class="op">=</span> <span class="va">mu</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">vAz1a</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
+<span class="r-in"><span>    <span class="va">vAz1a</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
 <span class="r-in"><span>                       mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="va">vAz2a</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
+<span class="r-in"><span>    <span class="va">vAz2a</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
 <span class="r-in"><span>                       intercept <span class="op">=</span> <span class="va">mu</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">vAz1b</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
+<span class="r-in"><span>    <span class="va">vAz1b</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
 <span class="r-in"><span>                   mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                   tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.75</span><span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="va">vAz2b</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, x <span class="op">=</span> <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
+<span class="r-in"><span>    <span class="va">vAz2b</span> <span class="op">&lt;-</span> <span class="fu">cvar</span><span class="fu">::</span><span class="fu">VaR</span><span class="op">(</span><span class="va">pnorm</span>, <span class="fl">0.05</span>, dist.type <span class="op">=</span> <span class="st">"cdf"</span>,</span></span>
 <span class="r-in"><span>                   intercept <span class="op">=</span> <span class="va">mu</span>, slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">sigma2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                   tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.75</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -254,15 +254,14 @@ slope*X</code>, where <code>X</code> has distribution specified by <code>dist</c
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt; mu &lt;- apply(edhec, 2, mean)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt; sigma2 &lt;- apply(edhec, 2, var)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt; musigma2 &lt;- cbind(mu, sigma2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz1 &lt;- cvar::VaR(qnorm, x = 0.05, mean = mu, sd = sqrt(sigma2))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz2 &lt;- cvar::VaR(qnorm, x = 0.05, intercept = mu, slope = sqrt(sigma2))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz1a &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = mu, sd = sqrt(sigma2))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz2a &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = mu, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +     slope = sqrt(sigma2))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz1b &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", mean = mu, sd = sqrt(sigma2), </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz1 &lt;- cvar::VaR(qnorm, 0.05, mean = mu, sd = sqrt(sigma2))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz2 &lt;- cvar::VaR(qnorm, 0.05, intercept = mu, slope = sqrt(sigma2))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz1a &lt;- cvar::VaR(pnorm, 0.05, dist.type = "cdf", mean = mu, sd = sqrt(sigma2))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz2a &lt;- cvar::VaR(pnorm, 0.05, dist.type = "cdf", intercept = mu, slope = sqrt(sigma2))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz1b &lt;- cvar::VaR(pnorm, 0.05, dist.type = "cdf", mean = mu, sd = sqrt(sigma2), </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +     tol = .Machine$double.eps^0.75)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz2b &lt;- cvar::VaR(pnorm, x = 0.05, dist.type = "cdf", intercept = mu, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> +     slope = sqrt(sigma2), tol = .Machine$double.eps^0.75)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vAz2b &lt;- cvar::VaR(pnorm, 0.05, dist.type = "cdf", intercept = mu, slope = sqrt(sigma2), </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> +     tol = .Machine$double.eps^0.75)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt; vPA &lt;- apply(musigma2, 1, function(x) PerformanceAnalytics::VaR(p = 0.95, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> +     method = "gaussian", invert = FALSE, mu = x[1], sigma = x[2], weights = 1))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt; max(abs((vPA - vAz1)))</span>

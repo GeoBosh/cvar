@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cvar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,10 +45,20 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5" id="cvar-05-cran">cvar 0.5 (CRAN)<a class="anchor" aria-label="anchor" href="#cvar-05-cran"></a></h2><p class="text-muted">CRAN release: 2022-11-03</p>
+<ul><li><p>made <code>ES</code> generic (<code>VaR</code> was already generic).</p></li>
+<li><p>moved <code>fGarch</code> from Imports to Suggests.</p></li>
+<li>
+<p>renamed argument <code>x</code> of <code>VaR</code> and <code>ES</code> to <code>p_loss</code>. <code>p_loss</code> seems more expressive and suggests that it relates to the losses, usually small numbers like <code>0.05</code>. Other suitable names like <code>alpha</code>, <code>p</code>, and <code>prob</code>, are commonly used as arguments to other functions that might be used as argument <code>dist</code> and make them more difficult to pass via the <code>...</code> arguments.</p>
+<p>For now, an warning is issued if <code>x</code> is used as a named argument in a call (e.g. <code>VaR(dist, x = 0.05)</code>) with the intend to turn that in an error in the next release of the package. This change should not be noticed by most users since it is much more natural not to name this argument and use something like <code>VaR(dist, 0.05)</code>.</p>
+</li>
+<li><p>moved <code>fGarch</code> from Imports to Suggests.</p></li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.1" id="cvar-041-cran">cvar 0.4.1 (CRAN)<a class="anchor" aria-label="anchor" href="#cvar-041-cran"></a></h2><p class="text-muted">CRAN release: 2022-09-19</p>
 <ul><li><p>when the input was numeric, <code><a href="../reference/ES.html">ES()</a></code> was not handling the level <code>x</code> properly (fixes issue <a href="https://github.com/GeoBosh/cvar/issues/2" class="external-link">#2</a>, reported by Marius Bommert).</p></li>
 <li><p>changed the JSS reference to use the new-style doi.</p></li>
-<li><p>fixed a bug in the tests, in v0.4-0, that was causing faiure of the tests on travis, despite all checks on CRAN passing with OK. <code>devtools::test()</code> was failing too, but only on the first run in a session, details in the git commit.</p></li>
+<li><p>fixed a bug in the tests, in v0.4-0, that was causing failure of the tests on travis, despite all checks on CRAN passing with OK. <code>devtools::test()</code> was failing too, but only on the first run in a session, details in the git commit.</p></li>
 <li><p>set up GHA.</p></li>
 </ul></div>
     <div class="section level2">
