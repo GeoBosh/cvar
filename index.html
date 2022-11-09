@@ -74,10 +74,7 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="cvar">cvar<a class="anchor" aria-label="anchor" href="#cvar"></a>
-</h1></div>
-
+  <main id="main" class="col-md-9">
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
@@ -103,7 +100,7 @@
 <p>Locations-scale transformations can be specified separately from the other distribution parameters. This is useful when such parameters are not provided directly by the distribution at hand. The use of these parameters often leads to more efficient computations and better numerical accuracy even if the distribution has its own parameters for this purpose. Some of the examples for <code>VaR</code> and <code>ES</code> illustrate this for the Gaussian distribution.</p>
 <p>Since VaR is a quantile, functions computing it for a given distribution are convenience functions. <code>VaR</code> exported by <code>cvar</code> could be attractive in certain workflows because of its vectorised distribution parameters, the location-scale transformation and the possibility to compute it from cdf’s when quantile functions are not available.</p>
 </div>
-</div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -139,6 +136,8 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=cvar" class="external-link"><img src="https://www.r-pkg.org/badges/version/cvar" alt="CRANStatusBadge"></a></li>
+<li><a href="https://www.r-pkg.org/pkg/rbibutils" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/rbibutils" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="https://r-pkg.org/pkg/rbibutils" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/rbibutils?color=blue" alt="CRAN RStudio mirror downloads"></a></li>
 <li><a href="https://github.com/GeoBosh/cvar/actions" class="external-link"><img src="https://github.com/GeoBosh/cvar/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://app.codecov.io/gh/GeoBosh/cvar" class="external-link"><img src="https://codecov.io/gh/GeoBosh/cvar/branch/master/graph/badge.svg?token=2SW9HKG71Y" alt="codecov"></a></li>
 </ul>
