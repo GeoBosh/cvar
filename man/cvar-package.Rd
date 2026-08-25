@@ -4,17 +4,20 @@
 \name{cvar-package}
 \alias{cvar-package}
 \alias{cvar}
-\title{Compute Conditional Value-at-Risk and Value-at-Risk}
+\title{Compute Expected shortfall (ES) and Value-at-Risk (VaR)}
 \description{
-Compute expected shortfall (ES) and Value at Risk (VaR)
-    from a quantile function, distribution function, random number
-    generator or probability density function.  ES is also known as
-    Conditional Value at Risk (CVaR). Virtually any continuous
-    distribution can be specified.  The functions are vectorised over
-    the arguments. Some support for GARCH models is provided, as well.
+Compute expected shortfall (ES) and Value at Risk (VaR) from a
+    quantile function, distribution function, random number generator,
+    probability density function, or data.  ES is also known as Conditional
+    Value at Risk (CVaR). Virtually any continuous distribution can be
+    specified.  \code{VaR()} and \code{ES()} are vectorised over the
+    arguments. Some support for GARCH models is provided, as well.
 }
 \details{
-There is a huge number of functions for computations with
+The name, \pkg{cvar}, of this package comes from \emph{Conditional Value
+    at Risk} (CVaR), which is an alternative term for expected shortfall.
+
+    There is a huge number of functions for computations with
     distributions in core \R and in contributed packages. Pdf's,
     cdf's, quantile functions and random number generators are
     covered comprehensively. The coverage of expected shortfall is
@@ -27,21 +30,19 @@ There is a huge number of functions for computations with
     including some functions for expected shortfall.
 
     Package \pkg{cvar} is a small package with, essentially, two main
-    functions --- \code{ES} for computing the expected shortfall
-    and \code{VaR} for Value at Risk.  The user specifies the
-    distribution by supplying one of the functions that define a
-    continuous distribution---currently this can be a quantile
-    function (qf), cumulative distribution function (cdf) or
-    probability density function (pdf). Virtually any continuous
-    distribution can be specified.
+    functions --- \code{ES} for computing the expected shortfall and
+    \code{VaR} for Value at Risk.  The user specifies the distribution by
+    supplying one of the functions that define a continuous
+    distribution---currently this can be a quantile function (qf), cumulative
+    distribution function (cdf) or probability density function
+    (pdf). Virtually any continuous distribution can be specified. The
+    distributions are usually obtained by fitting distributions or
+    specialised models to data. Instead of distributions, data for returns or
+    log-returns can be supplied, as well.
 
-    The functions are vectorised over the parameters of the
-    distributions, making bulk computations more convenient, for
+    The functions \code{VaR} and \code{ES} are vectorised over the parameters
+    of the distributions, making bulk computations more convenient, for
     example for forecasting or model evaluation.
-
-    The name of this package, "cvar", comes from \emph{Conditional
-    Value at Risk} (CVaR), which is an alternative term for
-    expected shortfall.
 
     We chose to use the standard names \code{ES} and \code{VaR},
     despite the possibility for name clashes with same named
@@ -69,14 +70,19 @@ There is a huge number of functions for computations with
     currently under development, see \code{\link{predict.garch1c1}}
     for current functionality.
 
-    In practice, we may need to compute VaR associated with data. The distribution comes
-    from fitting a model. In the simplest case, we fit a distribution to the data,
-    assuming that the sample is i.i.d. For example, a normal distribution \eqn{N(\mu,
-    \sigma^2)} can be fitted using the sample mean and sample variance as estimates of the
-    unknown parameters \eqn{\mu} and \eqn{\sigma^2}, see section \sQuote{Examples}. For other
-    common distributions there are specialised functions to fit their parameters and if
-    not, general optimisation routines can be used. More soffisticated models may be used,
-    even time series models such as GARCH and mixture autoregressive models.
+    In practice, we may need to compute VaR associated with data. The
+    distribution comes from fitting a model. In the simplest case, we fit a
+    distribution to the data, assuming that the sample is i.i.d. For example,
+    a normal distribution \eqn{N(\mu, \sigma^2)} can be fitted using the
+    sample mean and sample variance as estimates of the unknown parameters
+    \eqn{\mu} and \eqn{\sigma^2}, see section \sQuote{Examples}. For other
+    common distributions there are specialised functions to fit their
+    parameters and if not, general optimisation routines can be used. More
+    soffisticated models may be used, even time series models such as GARCH
+    and mixture autoregressive models.
+
+    The functions \code{VaR} and \code{ES} are generic (S3). Further methods
+    for them may be defined in other packages.
 }
 \examples{
 ## see the examples for ES(), VaR(), predict.garch1c1()
@@ -92,3 +98,12 @@ There is a huge number of functions for computations with
 \author{
 Georgi N. Boshnakov
 }
+\concept{AVaR}
+\concept{CVaR}
+\concept{ETL}
+\concept{VaR}
+\concept{Value at Risk}
+\concept{average value at risk}
+\concept{conditional value at risk}
+\concept{expected shortfall}
+\concept{expected tail loss}

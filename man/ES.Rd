@@ -4,7 +4,8 @@
 \alias{ES}
 \alias{ES.default}
 \alias{ES.numeric}
-\title{Compute expected shortfall (ES) of distributions}
+\alias{ES.matrix}
+\title{Compute expected shortfall (ES)}
 \usage{
 ES(dist, p_loss = 0.05, ...)
 
@@ -17,25 +18,18 @@ ES(dist, p_loss = 0.05, ...)
   intercept = 0,
   slope = 1,
   control = list(),
+  transf = FALSE,
   x
 )
 
-\method{ES}{numeric}(
-  dist,
-  p_loss = 0.05,
-  dist.type = "qf",
-  qf,
-  ...,
-  intercept = 0,
-  slope = 1,
-  control = list(),
-  x
-)
+\method{ES}{numeric}(dist, p_loss = 0.05, ..., intercept = 0, slope = 1, transf = FALSE, x)
+
+\method{ES}{matrix}(dist, p_loss = 0.05, ..., intercept = 0, slope = 1, transf = FALSE, x)
 }
 \arguments{
 \item{dist}{specifies the distribution whose ES is computed, usually a function or a name
-of a function computing quantiles, cdf, pdf, or a random number generator, see
-Details.}
+of a function computing quantiles, cdf, pdf, or a random number generator. Can also be
+a numeric vector or matrix, representing data, see section \sQuote{Details}.}
 
 \item{p_loss}{level, default is 0.05.}
 
@@ -51,22 +45,32 @@ slope*X}, where \code{X} has distribution specified by \code{dist}, see Details.
 
 \item{control}{additional control parameters for the numerical integration routine.}
 
+\item{transf}{use only if \code{"dist"} represents log-returns. If \code{TRUE}, give the
+result for the returns (not log-returns), see section \sQuote{Details}.}
+
 \item{x}{deprecated and will soon be removed. \code{x} was renamed to \code{p_loss},
 please use the latter.}
 }
 \value{
-a numeric vector
+a numeric vector or matrix
 }
 \description{
-Compute the expected shortfall for a distribution.
+Compute expected shortfall (ES).
 }
 \details{
-\code{ES} computes the expected shortfall for distributions specified by the
-    arguments. \code{dist} is typically a function (or the name of one). What \code{dist}
-    computes is determined by \code{dist.type}, whose default setting is \code{"qf"} (the
-    quantile function). Other possible settings of \code{dist.type} include \code{"cdf"}
-    and \code{"pdf"}.  Additional arguments for \code{dist} can be given with the
-    \code{"..."} arguments.
+\code{ES} is a generic function for computation of expected shortfall. The default
+    method computes ES corresponding to a distribution, usually fitted or implied by a
+    fitted model.  There are also methods for data (numeric or matrix).
+
+    Alternative terms for ES include CVaR (conditional value at risk), AVaR (average value
+    at risk), and ETL (expected tail loss).
+
+    The default method of \code{ES} computes the expected shortfall for distributions
+    specified by the arguments. \code{dist} is typically a function (or the name of
+    one). What \code{dist} computes is determined by \code{dist.type}, whose default
+    setting is \code{"qf"} (the quantile function). Other possible settings of
+    \code{dist.type} include \code{"cdf"} and \code{"pdf"}.  Additional arguments for
+    \code{dist} can be given with the \code{"..."} arguments.
 
     Argument \code{dist} can also be a numeric vector. In that case the ES is computed,
     effectively, for the empirical cumulative distribution function (ecdf) of the
@@ -74,6 +78,8 @@ Compute the expected shortfall for a distribution.
     function is used instead for the computation of VaR. Arguments in \code{"..."} are
     passed eventually to \code{quantile()} and can be used, for example, to select a
     non-defult method for the computation of quantiles.
+
+    If \code{dist} is a matrix, the numeric method is applied to each of its columns.
 
     Except for the exceptions discussed below, a function computing VaR for the specified
     distribution is constructed and the expected shortfall is computed by numerically
@@ -88,7 +94,7 @@ Compute the expected shortfall for a distribution.
     comparison purposes.
 
 
-    A bunch of expected shortfalls is computed if argument \code{x} or any of the
+    A bunch of expected shortfalls is computed if argument \code{p_loss} or any of the
     arguments in \code{"..."} are of length greater than one. They are recycled to equal
     length, if necessary, using the normal \R recycling rules.
 
@@ -109,6 +115,10 @@ Compute the expected shortfall for a distribution.
     The names, \code{intercept} and \code{slope}, for the location and scale parameters
     were chosen for their expressiveness and to minimise the possibility for a clash with
     parameters of \code{dist} (e.g., the Gamma distribution has parameter \code{scale}).
+
+    When argument \code{dist} represents log-returns, ES is for the log-returns. Use
+    \code{transf = TRUE} to return its value for the returns. Note that the ES of the
+    returns cannot be obtained by exponentiating the ES for the log-returns.
 }
 \examples{
 ES(qnorm)
@@ -154,3 +164,10 @@ lines(x, yS, col = "blue")
 
     \code{\link[=predict.garch1c1]{predict}} for examples with fitted models
 }
+\concept{AVaR}
+\concept{CVaR}
+\concept{ETL}
+\concept{average value at risk}
+\concept{conditional value at risk}
+\concept{expected shortfall}
+\concept{expected tail loss}

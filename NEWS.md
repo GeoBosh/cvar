@@ -1,4 +1,22 @@
-# cvar 0.5 (CRAN)
+# cvar 0.6.1
+
+* fixed a test failing after a change in the arguments of `RNGkind` in R-devel
+  =svn r90299=.
+
+
+# cvar 0.6
+
+* `ES.numeric` was giving wrong results when `length(p_loss) > 1`.
+
+* VaR and ES now have methods for class `"matrix"`.
+
+* documented that now ES and VaR can be computed from data, as well.
+
+* new argument `transf` of `Var()` and `ES()` can be used to request the values
+  corresponding to the returns (when `dist` represents log-returns).
+  
+
+# cvar 0.5
 
 * made `ES` generic (`VaR` was already generic).
 
@@ -19,7 +37,7 @@
 * moved `fGarch` from Imports to Suggests.
 
 
-# cvar 0.4.1 (CRAN)
+# cvar 0.4.1
 
 * when the input was numeric, `ES()` was not handling the level `x` properly
   (fixes issue #2, reported by Marius Bommert).
@@ -34,14 +52,14 @@
 * set up GHA.
 
 
-# cvar 0.4-0 (CRAN)
+# cvar 0.4-0
 
 * fix tests to pass with the changed R random generator.
 
 * some new examples and minor documentation changes.
 
 
-# cvar 0.3-0 (CRAN)
+# cvar 0.3-0
 
 * now `\VignetteIndexEntry` in `Guide_cvar.Rnw` is plain text.
 
@@ -55,7 +73,7 @@
   had been wrongly swappped. 
 
 
-# cvar 0.2-0 (CRAN)
+# cvar 0.2-0
 
 * suggest 'covr'.
 
@@ -72,7 +90,7 @@
 * added experimental web site (docs/)
 
 
-# cvar 0.1-1 (CRAN)
+# cvar 0.1-1
 
 * added a doi to DESCRIPTION.
 

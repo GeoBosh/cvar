@@ -35,6 +35,8 @@
 #' ##  GARCH(1,1) with standardised-t_5
 #' mot <- GarchModel(omega = 1, alpha = 0.3, beta = 0.5, cond.dist = list("std", nu = 5))
 #'
+#' @concept GARCH model
+#' 
 #' @export
 GarchModel <- function(model = list(), ..., model.class = NULL){
     ## TODO: check the correctness of the parameters
@@ -140,7 +142,7 @@ GarchModel <- function(model = list(), ..., model.class = NULL){
             .dist[[dist]] <- lapply(gen_list[-1], as.call) # dropping $package
             res <- .dist[[dist]][[what]]
             if(is.null(res))
-                stop("property '", "'what not available for '", dist, "'")
+                stop("property '", what, "' not available for '", dist, "'")
         }
     }
 
@@ -178,6 +180,9 @@ GarchModel <- function(model = list(), ..., model.class = NULL){
 #'
 #' @note This function is under development and may be changed.
 #'
+#' @concept GARCH model
+#' @concept simulate GARCH time series
+#' 
 #' @export
 sim_garch1c1 <- function(model, n, n.start = 0, seed = NULL){
     ## TODO: seed is not used currently
@@ -382,6 +387,8 @@ sim_garch1c1 <- function(model, n, n.start = 0, seed = NULL){
 #'
 #' @note This function is under development and may be changed.
 #'
+#' @concept predict GARCH time series
+#' 
 #' @export
 predict.garch1c1 <- function(object, n.ahead = 1, Nsim = 1000, eps, sigmasq, seed = NULL, ...){
     model <- object

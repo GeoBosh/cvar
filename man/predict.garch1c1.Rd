@@ -126,3 +126,4 @@ gmo1.pred$pi_sim
 op <- options(op) # restore options(digits)
 
 }
+\concept{predict GARCH time series}

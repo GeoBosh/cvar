@@ -6,6 +6,7 @@
 \alias{VaR_cdf}
 \alias{VaR.default}
 \alias{VaR.numeric}
+\alias{VaR.matrix}
 \title{Compute Value-at-Risk (VaR)}
 \usage{
 VaR(dist, p_loss = 0.05, ...)
@@ -38,15 +39,18 @@ VaR_cdf(
   intercept = 0,
   slope = 1,
   tol = .Machine$double.eps^0.5,
+  transf = FALSE,
   x
 )
 
-\method{VaR}{numeric}(dist, p_loss = 0.05, ..., intercept = 0, slope = 1, x)
+\method{VaR}{numeric}(dist, p_loss = 0.05, ..., intercept = 0, slope = 1, transf = FALSE, x)
+
+\method{VaR}{matrix}(dist, p_loss = 0.05, ..., intercept = 0, slope = 1, transf = FALSE, x)
 }
 \arguments{
 \item{dist}{specifies the distribution whose ES is computed, usually a function or a name
-of a function computing quantiles, cdf, pdf, or a random number generator, see
-Details.}
+of a function computing quantiles, cdf, pdf, or a random number generator. Can also be
+a numeric vector or matrix, representing data, see section \sQuote{Details}.}
 
 \item{p_loss}{level, default is 0.05.}
 
@@ -62,18 +66,22 @@ please use the latter.}
 
 \item{dist.type}{a character string specifying what is computed by \code{dist}, such as
 "qf" or "cdf".}
+
+\item{transf}{use only if \code{"dist"} represents log-returns. If \code{TRUE}, give the
+result for the returns (not log-returns), see section \sQuote{Details}.}
 }
 \description{
-\code{VaR} computes the Value-at-Risk of the distribution specified by the
-    arguments. The meaning of the parameters is the same as in \code{\link{ES}}, including
-    the recycling rules.
+\code{VaR} is a generic function for computation of Value-at-Risk. The default method
+    computes VaR corresponding to a distribution, usually fitted or implied by a fitted
+    model.  There are also methods for data (numeric or matrix).
 }
 \details{
-\code{VaR} is S3 generic. The meaning of the parameters for its default method is the
-    same as in \code{\link{ES}}, including the recycling rules.
+\code{VaR} is S3 generic. The meaning of the parameters for the methods defined in
+    \pkg{cvar} and described here are the same as in \code{\link{ES}}, including the
+    recycling rules.
 
     \code{VaR_qf} and \code{VaR_cdf} are streamlined, non-generic, variants for the common
-    case when the \code{"..."} parameters are scalar. The parameters \code{x},
+    case when the \code{"..."} parameters are scalar. The parameters \code{p_loss},
     \code{intercept}, and \code{slope} can be vectors, as for \code{VaR}.
 
     Argument \code{dist} can also be a numeric vector. In that case the ES is computed,
@@ -83,6 +91,9 @@ please use the latter.}
     passed eventually to \code{quantile()} and can be used, for example, to select a
     non-defult method for the computation of quantiles.
 
+    If \code{dist} is of class \code{"matrix"}, then the numeric method is applied to each
+    column.
+
     In practice, we may need to compute VaR associated with data. The distribution comes
     from fitting a model. In the simplest case, we fit a distribution to the data,
     assuming that the sample is i.i.d. For example, a normal distribution \eqn{N(\mu,
@@ -91,6 +102,9 @@ please use the latter.}
     other common distributions there are specialised functions to fit their parameters and
     if not, general optimisation routines can be used. More soffisticated models may be
     used, even time series models such as GARCH and mixture autoregressive models.
+    
+    When argument \code{dist} represents log-returns, VaR is for the log-returns. Use
+    \code{transf = TRUE} to return its value for the returns.
 }
 \note{
 We use the traditional definition of VaR as the negated lower quantile. For example,
@@ -180,3 +194,4 @@ if (requireNamespace("PerformanceAnalytics", quietly = TRUE)) withAutoprint({
 
     \code{\link[=predict.garch1c1]{predict}} for examples with fitted models
 }
+\concept{Value at Risk}

@@ -1,23 +1,25 @@
 Package: cvar
 Type: Package
 Title: Compute Expected Shortfall and Value at Risk for Continuous Distributions
-Version: 0.5.9000
+Version: 0.6.1
 Authors@R: person(given = c("Georgi", "N."), family = "Boshnakov",
                   role = c("aut", "cre"), 
-                  email = "georgi.boshnakov@manchester.ac.uk")
+                  email = "georgi.boshnakov@manchester.ac.uk",
+		     comment = c(ORCID = "0000-0003-2839-346X"))
 Description: Compute expected shortfall (ES) and Value at Risk (VaR) from a
-    quantile function, distribution function, random number generator or
-    probability density function.  ES is also known as Conditional Value at
-    Risk (CVaR). Virtually any continuous distribution can be specified.
-    The functions are vectorized over the arguments. The computations are
-    done directly from the definitions, see e.g. Acerbi and Tasche (2002)
-    <doi:10.1111/1468-0300.00091>. Some support for GARCH models is provided,
-    as well.
-URL: https://geobosh.github.io/cvar/ (doc), https://github.com/GeoBosh/cvar (devel)
+    quantile function, distribution function, random number generator,
+    probability density function, or data.  ES is also known as Conditional
+    Value at Risk (CVaR). Virtually any continuous distribution can be
+    specified.  The functions are vectorized over the arguments. The
+    computations are done directly from the definitions, see e.g. Acerbi and
+    Tasche (2002) <doi:10.1111/1468-0300.00091>.  Some support for GARCH models
+    is provided, as well.
+URL: https://geobosh.github.io/cvar/ (doc),  https://CRAN.R-project.org/package=cvar
 BugReports: https://github.com/GeoBosh/cvar/issues
 Imports: gbutils, Rdpack (>= 0.8)
+Suggests: testthat, fGarch, PerformanceAnalytics
 RdMacros: Rdpack
 License: GPL (>=2)
 Collate: VaR.R cvar-package.R garch.R
-RoxygenNote: 7.2.0
-Suggests: testthat, fGarch, PerformanceAnalytics
+Encoding: UTF-8
+RoxygenNote: 7.3.3

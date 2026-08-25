@@ -40,3 +40,5 @@ of the random number generator is restored before the function returns.
 \note{
 This function is under development and may be changed.
 }
+\concept{GARCH model}
+\concept{simulate GARCH time series}

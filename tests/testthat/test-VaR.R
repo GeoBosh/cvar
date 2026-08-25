@@ -80,7 +80,50 @@ if(require("PerformanceAnalytics")){
 
     max(abs((vPA - vAz1b))) # 4.374869e-13
     max(abs((vPA - vAz2b))) # 3.330669e-16
+
+    ## compute in 2 ways with cvar::VaR; this time with transf = TRUE
+    ## TODO: need more meaningful example(s) for this
+    vAz1tr <- cvar::VaR(qnorm, p_loss = 0.05, mean = mu, sd = sqrt(sigma2), transf = TRUE)
+    vAz2tr <- cvar::VaR(qnorm, p_loss = 0.05, intercept = mu, slope = sqrt(sigma2), transf = TRUE)
+
+    vAz1atr <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
+                       mean = mu, sd = sqrt(sigma2), transf = TRUE)
+    vAz2atr <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
+                       intercept = mu, slope = sqrt(sigma2), transf = TRUE)
+
+    vAz1btr <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
+                   mean = mu, sd = sqrt(sigma2),
+                   tol = .Machine$double.eps^0.75, transf = TRUE)
+    vAz2btr <- cvar::VaR(pnorm, p_loss = 0.05, dist.type = "cdf",
+                   intercept = mu, slope = sqrt(sigma2),
+                   tol = .Machine$double.eps^0.75, transf = TRUE)
 }
+
+## the matrix method
+m20 <- matrix(rnorm(40), ncol = 2)
+colnames(m20) <- c("A", "B")
+expect_equal(VaR(m20), VaR(m20, 0.05))
+VaR(m20)
+VaR(m20, c(0.01, 0.05))
+
+## ES
+## use 500 values to mamke 1% and 5% quantiles more likely to be different
+m500 <- matrix(rnorm(250), ncol = 2)
+ES(m500)
+ES(m500, 0.01)
+ES(m500, 0.05)
+ES(m500, c(0.01, 0.05))
+
+## transf = TRUE
+ES(m500, transf = TRUE)
+ES(m500, 0.01, transf = TRUE)
+ES(m500, 0.05, transf = TRUE)
+ES(m500, c(0.01, 0.05), transf = TRUE)
+
+VaR(m500, transf = TRUE)
+VaR(m500, 0.01, transf = TRUE)
+VaR(m500, 0.05, transf = TRUE)
+VaR(m500, c(0.01, 0.05), transf = TRUE)
 
 })
 
@@ -116,5 +159,47 @@ ES(dnorm, p_loss = 0.05, dist.type = "pdf", qf = qnorm)
 ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm)
 ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = list(qnorm, qnorm, qnorm))
 ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = c(qnorm, qnorm, qnorm))
+
+
+#### the above with transf = TRUE; TODO: need more meaningful examples
+####
+expect_equal(ES(qnorm, dist.type = "qf", transf = TRUE),
+             ES(qnorm, transf = TRUE) )
+
+## Gaussian
+expect_equal(ES(qnorm, dist.type = "qf", transf = TRUE),
+             ES(pnorm, dist.type = "cdf", transf = TRUE) )
+
+
+## t-dist
+expect_lt(abs(ES(qt, dist.type = "qf", df = 4, transf = TRUE) - 
+                 ES(pt, dist.type = "cdf", df = 4, transf = TRUE)), 1e-7 )
+
+expect_equal(ES(pnorm, p_loss = 0.95, dist.type = "cdf", transf = TRUE),
+             ES(qnorm, p_loss = 0.95, dist.type = "qf", transf = TRUE) )
+## - VaRES::esnormal(0.95, 0, 1)
+## - PerformanceAnalytics::ETL(p=0.05, method = "gaussian", mu = 0,
+##                             sigma = 1, weights = 1)             # same
+
+
+## this uses "pdf"
+expect_lt(abs(ES(dnorm, p_loss = 0.05, dist.type = "pdf", qf = qnorm, transf = TRUE) -
+              ES(pnorm, p_loss = 0.05, dist.type = "cdf", transf = TRUE)), 1e-7 )
+
+## several in one call
+expect_lt(max(abs(
+    ES(pnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "cdf", transf = TRUE) -
+    ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm, transf = TRUE)
+    )), 1e-7)
+
+ES(dnorm, p_loss = 0.05, dist.type = "pdf", qf = qnorm, transf = TRUE)
+ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = qnorm, transf = TRUE)
+
+expect_equal(
+    ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = list(qnorm, qnorm, qnorm), transf = TRUE),
+    ES(dnorm, p_loss = c(0.1, 0.05, 0.01), dist.type = "pdf", qf = c(qnorm, qnorm, qnorm), transf = TRUE))
+
+
+
 })
 

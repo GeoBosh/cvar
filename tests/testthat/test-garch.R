@@ -29,6 +29,9 @@ test_that("garch1c1 related functions work ok", {
     if(getRversion() < "3.6.0"){
         a_saved <- "a_before_6.0.RDS"
         a_pred_saved <- "a_pred_before_6.0.RDS"
+    }else if(R.version$"svn rev" < 90299 ){
+        a_saved <- "a_before_svn_rev_90299.RDS"
+        a_pred_saved <- "a_pred_before_svn_rev_90299.RDS"
     }else{
         a_saved <- "a.RDS"
         a_pred_saved <- "a_pred.RDS"
